@@ -2,9 +2,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
-
+//T.L
 public class ClientEvent {
-	//T.L
+	
 
 private LocalDate eventDate; //required
 private BigDecimal budgetAmount; //required
