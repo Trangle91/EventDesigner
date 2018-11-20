@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Optional;
 
 //client directs the building of the event
-//T.L
 
 public class Client {
 
