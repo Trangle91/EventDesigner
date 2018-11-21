@@ -21,7 +21,6 @@ class ClientEventTest {
 	ClientEvent event = c.createEvent(expectedEventDate, expectedBudgetAmount, expectedGuestCount, 
 									expectedTableCount, expectedEventTheme, expectedColorPalette);
 	
-	
 
 	@Test
 		public void testEventDate() {
