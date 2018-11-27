@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 class ClientEventTest {
 	final ClientEventBuilder builder = new BuilderImpl();
 	
-	Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
-	LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
-	BigDecimal expectedBudgetAmount = new BigDecimal("2000.00");
-	Optional<Integer> expectedGuestCount = Optional.empty();
-	Optional<Integer> expectedTableCount = Optional.empty();
-	Optional<String> expectedEventTheme = Optional.empty();
-	Optional<String> expectedColorPalette = Optional.empty();
+	public Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
+	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
+	public BigDecimal expectedBudgetAmount = new BigDecimal("2000.00");
+	public Optional<Integer> expectedGuestCount = Optional.empty();
+	public Optional<Integer> expectedTableCount = Optional.empty();
+	public Optional<String> expectedEventTheme = Optional.empty();
+	public Optional<String> expectedColorPalette = Optional.empty();
 	
 	ClientEvent event = c.createEvent(expectedEventDate, expectedBudgetAmount, expectedGuestCount, 
 									expectedTableCount, expectedEventTheme, expectedColorPalette);

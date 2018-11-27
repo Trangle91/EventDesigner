@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Optional;
 //T.L
 public class ClientEvent {
@@ -13,6 +14,8 @@ private Optional<Integer> guestCount = Optional.empty();
 private Optional<Integer> tableCount = Optional.empty();  
 private Optional<String> eventTheme = Optional.empty(); //optional eventually will dropped in favor of implementing inherited types of events
 private Optional<String> colorPalette = Optional.empty(); //optional
+
+private HashMap<Client, ClientEvent> clientEventMap = new HashMap<Client, ClientEvent>();
 
 public ClientEvent() {
 	
