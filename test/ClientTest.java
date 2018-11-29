@@ -6,35 +6,51 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class ClientTest {
+	
+
 	final ClientEventBuilder builder = new BuilderImpl();
-	private Client c = new Client("FirstName", "LastName", Optional.empty(), "555-555-5555", builder);
-
+	private Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
+	public String expectedClientName = "Jane Doe";
+	public String expectedClientFirstName = "Jane";
+	public String expectedClientLastName = "Doe";
+	public String expectedClientPartnerName = "John";
+	public String expectedPhoneNumber = "555-555-5555";
+	
 	@Test
-
-//change visibility for tests
 	
 	public void canGetClientName() {
-		String expectedFullName = c.firstName + " " + c.lastName;
+		
 		String actualFullName = c.getClientName();
-		assertEquals(expectedFullName, actualFullName);
+		assertEquals(expectedClientName, actualFullName);
 	}
-
+	
+	@Test
 	public void canGetClientPhoneNumber() {
-		String expectedPhoneNumber = c.phoneNumber;
-		String actualPhoneNumber = c.getPhoneNUmber();
+		
+		String actualPhoneNumber = c.getPhoneNumber();
 		assertEquals(expectedPhoneNumber, actualPhoneNumber);
 	}
 	
+	@Test
 	public void canGetClientPartnerName() {
-		Optional<String> expectedPartnerName = c.partnerName; 
+		
 		String actualPartnerName = c.getPartnerName();
-		assertEquals(expectedPartnerName, actualPartnerName);
+		assertEquals(expectedClientPartnerName, actualPartnerName);
 	}
 
+	@Test
 	public void noPartnerNameByDefault() {
-		Optional<String> expectedPartnerName = c.partnerName;
+	
 		String actualPartnerName = c.getPartnerName();
-		assertEquals(expectedPartnerName, actualPartnerName);
+		assertEquals(expectedClientPartnerName, actualPartnerName);
+	}
+	
+	@Test
+	public void canGetClientFromClientMap() {
+		Client actual = c;
+		String phoneNumber = "555-555-5555";
+		Client expected = c.getClientAccount(phoneNumber);
+		assertEquals(expected, actual);
 	}
 
 }

@@ -1,41 +1,66 @@
 import java.math.BigDecimal;
 
-class TallAnchorArrangement extends Arrangement {
-	private static String arrangementName = "Tall anchor piece";
-	private static String arrangementDescription = "a tall clear glass pilsner base topped with a removable plastic dish filled with "
+//visibility changed for testing
+
+public enum TallAnchorArrangement  {
+	Instance;
+
+	public String arrangementName = "Tall anchor piece";
+	public String arrangementDescription = "a tall clear glass pilsner base topped with a removable plastic dish filled with "
 			+ "flowers of a various heights. Serves as an excellent eye catching piece that will transform any venue when "
 			+ "placed strategically around a room.";
-	private static BigDecimal arrangementPrice = new BigDecimal("130.00");
-	private static int numOfVotivesIncluded = 3;
-	private static int heightInInches = 32;
-	
-	TallAnchorArrangement(String arrangementName, String arrangementDescription, BigDecimal arrangementPrice, int numOfVotivesIncluded, int heightInInches) {
-		super(arrangementName, arrangementDescription, arrangementPrice, numOfVotivesIncluded);
-		this.heightInInches = heightInInches;
-	}
-	
-	@Override
-	BigDecimal getArrangmentPrice() {
-		// TODO Auto-generated method stub
-		return null;
+	public BigDecimal arrangementPrice = new BigDecimal("130.00");
+	public int numOfVotivesIncluded = 3;
+	public int heightInInches = 32;
+
+
+
+	public static TallAnchorArrangement getTallAnchorArrangement() {
+		return Instance;
 	}
 
-	@Override
-	String getArrangementName() {
+	public BigDecimal getArrangmentPrice() {
 		// TODO Auto-generated method stub
-		return null;
+		return arrangementPrice;
 	}
 
-	@Override
-	String getArrangementDescription() {
+
+	public String getArrangementName() {
 		// TODO Auto-generated method stub
-		return null;
+		return arrangementName;
 	}
 
-	@Override
-	int getNumOfVotivesIncluded() {
+
+	public String getArrangementDescription() {
 		// TODO Auto-generated method stub
-		return 0;
+		return arrangementDescription;
+	}
+
+
+	public int getNumOfVotivesIncluded() {
+		// TODO Auto-generated method stub
+		return numOfVotivesIncluded;
+	}
+
+	public int getHeightInInches() {
+		return heightInInches;
+	}
+
+	public int determineNumberOfArrangements(int tableCount) {
+		if (tableCount < 5) {
+			//return message saying tall anchor pieces are recommended for a minimum table count of 5
+			return 0;
+		}
+
+		if (tableCount >= 5 && tableCount <= 10) {
+			return 2;
+		}
+
+		else {
+			return tableCount / 5 + 2;
+		}
+
 	}
 
 }
+

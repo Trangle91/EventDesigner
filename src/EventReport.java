@@ -18,7 +18,7 @@ public String printClientReport(Client client)
 {
 	String clientreport;
 	clientreport = "Client name: " + client.getClientName();
-	clientreport += "\nClient PhoneNumber: " + client.getPhoneNUmber();
+	clientreport += "\nClient PhoneNumber: " + client.getPhoneNumber();
 	clientreport += "\nClient partner: " + client.getPartnerName();
 	return clientreport;
 }

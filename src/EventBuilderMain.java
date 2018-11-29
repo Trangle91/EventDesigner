@@ -48,8 +48,8 @@ public class EventBuilderMain {
 		Optional<Integer> guestCount = Optional.ofNullable(guest_count);
 		
 		System.out.println("(Optional) Table count?");
-		int table_count = scan.nextInt();
-		Optional<Integer> tableCount = Optional.ofNullable(table_count);
+		int tableCount = scan.nextInt();
+	
 		
 		System.out.println("(Optional) Event theme?");
 		String theme = scan.next();

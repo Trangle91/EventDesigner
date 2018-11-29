@@ -9,7 +9,7 @@ public interface ClientEventBuilder {
 	ClientEventBuilder withEventDate (final LocalDate eventDate);
 	ClientEventBuilder withBudgetAmount (final BigDecimal budgetAmount);
 	ClientEventBuilder withGuestCount (final Optional<Integer> guestCount);
-	ClientEventBuilder withTableCount (final Optional<Integer> tableCount);
+	ClientEventBuilder withTableCount (final int tableCount);
 	ClientEventBuilder withEventTheme (final Optional<String> eventTheme);
 	ClientEventBuilder withColorPalette (final Optional<String> colorPalette);
 }
@@ -46,7 +46,7 @@ public BuilderImpl() {
 	}
 
 	@Override
-	public ClientEventBuilder withTableCount(Optional<Integer> tableCount) {
+	public ClientEventBuilder withTableCount(int tableCount) {
 		event.setTableCount(tableCount);
 		return this;
 	}

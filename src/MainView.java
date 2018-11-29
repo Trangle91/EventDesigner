@@ -11,12 +11,12 @@ public class MainView {
 			return message;
 	}
 	
-	public String result()
+	public void result()
 	{
 		String result;
 		result = "The result for your event based on your parameters are as followed.";
 				
-		return result;
+		System.out.println(result);
 	}
 	
 }
