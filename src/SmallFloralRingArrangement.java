@@ -9,7 +9,7 @@ Instance;
 	public  BigDecimal arrangementPrice = new BigDecimal("55.00");
 	public  int numOfVotivesIncluded = 3;
 	
-	public static SmallFloralRingArrangement getLowFloralArrangement() {
+	public static SmallFloralRingArrangement getSmallFloralRingArrangement() {
 		return Instance;
 	}
 	

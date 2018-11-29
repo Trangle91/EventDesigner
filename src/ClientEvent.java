@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Optional;
@@ -9,11 +10,17 @@ public class ClientEvent {
 
 private LocalDate eventDate; //required
 private BigDecimal budgetAmount; //required
+private int tableCount = 0;
 
-private Optional<Integer> guestCount = Optional.empty();
-private Optional<Integer> tableCount = Optional.empty();  
+private Optional<Integer> guestCount = Optional.empty(); 
 private Optional<String> eventTheme = Optional.empty(); //optional eventually will dropped in favor of implementing inherited types of events
 private Optional<String> colorPalette = Optional.empty(); //optional
+
+private int numTallAnchorArrangements = 0;
+private int numLowFloralArrangements = 0;
+private int numLargeFloralRingArrangements = 0;
+private int numSmallFloralRingArrangements = 0;
+private int numVotiveArrangements = 0;
 
 private HashMap<Client, ClientEvent> clientEventMap = new HashMap<Client, ClientEvent>();
 
@@ -47,11 +54,11 @@ public void setGuestCount(Optional<Integer> guestCount) {
 	this.guestCount = guestCount;
 }
 
-public Optional<Integer> getTableCount() {
+public int getTableCount() {
 	return this.tableCount;
 }
 
-public void setTableCount(Optional<Integer> tableCount) {
+public void setTableCount(int tableCount) {
 	this.tableCount = tableCount;
 }
 
@@ -72,7 +79,31 @@ public void setColorPalette(Optional<String> colorPalette) {
 }
 
 
+public int designEvent(int tableCount, BigDecimal budgetAmount, Object...arrangements) { //can throw an exception 
+	boolean containsTallAnchorArrangement = Arrays.stream(arrangements).anyMatch(TallAnchorArrangement.getTallAnchorArrangement()::equals);
+	int totalNumArrangements = arrangements.length;
+	int numOfArrangements;
 	
+	if (arrangements.length == 0) {
+		return 0; //eventually throw a message asking client to select an arrangement type. 
+	}
+	
+	if (containsTallAnchorArrangement == true && arrangements.length == 1) { //client only wants tall pieces
+		return tableCount;
+	}
+	
+	if (containsTallAnchorArrangement == true) {
+		totalNumArrangements = totalNumArrangements - 1;
+		numTallAnchorArrangements = TallAnchorArrangement.getTallAnchorArrangement().determineNumberOfArrangements(tableCount);
+		tableCount = tableCount - numTallAnchorArrangements;
+		return numOfArrangements = tableCount / totalNumArrangements;
+		
+	}
+	
+	else {
+		return numOfArrangements = tableCount / totalNumArrangements;
+	}
+}
 }
 
 

@@ -14,7 +14,7 @@ class ClientEventTest {
 	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
 	public BigDecimal expectedBudgetAmount = new BigDecimal("2000.00");
 	public Optional<Integer> expectedGuestCount = Optional.empty();
-	public Optional<Integer> expectedTableCount = Optional.empty();
+	public int expectedTableCount = 35;
 	public Optional<String> expectedEventTheme = Optional.empty();
 	public Optional<String> expectedColorPalette = Optional.empty();
 	
@@ -57,9 +57,9 @@ class ClientEventTest {
 	
 	@Test 
 	public void testEnteredTableCount() {
-		Optional<Integer> expectedEnteredTableCount = Optional.of(19);
+		int expectedEnteredTableCount = 19;
 		event.setTableCount(expectedEnteredTableCount);
-		Optional<Integer> actual = event.getTableCount();
+		int actual = event.getTableCount();
 		assertEquals(expectedEnteredTableCount, actual);
 	}
 	
@@ -91,8 +91,21 @@ class ClientEventTest {
 		assertEquals(expectedEnteredColorPalette, actual);
 	}
 	
+	@Test
+	public void testDesignEvent0() { //client only wants tall pieces
+		int expected = 35;
+		int actual = event.designEvent(expectedTableCount, expectedBudgetAmount, TallAnchorArrangement.getTallAnchorArrangement());
+		assertEquals(expected, actual);
+	}
 	
-	
-	
+	@Test
+	public void testDesignEvent1() { //client wants tall pieces and 3 other arrangements
+		int expected = 8;
+		int actual = event.designEvent(expectedTableCount, expectedBudgetAmount, TallAnchorArrangement.getTallAnchorArrangement(), 
+				VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(),
+				LowFloralArrangement.getLowFloralArrangement()); 
+		assertEquals(expected, actual);
+	}
+		
 
 }

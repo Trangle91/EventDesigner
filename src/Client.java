@@ -68,7 +68,7 @@ public class Client {
 	}
 
 	public ClientEvent createEvent(LocalDate eventDate, BigDecimal budgetAmount, Optional<Integer> guestCount, 
-			Optional<Integer> tableCount, Optional<String> eventTheme, Optional<String> colorPalette) {
+			int tableCount, Optional<String> eventTheme, Optional<String> colorPalette) {
 
 		event = builder.withEventDate(eventDate)
 				.withBudgetAmount(budgetAmount)
@@ -101,5 +101,6 @@ public class Client {
 				Objects.equals(lastName, client.lastName) &&
 				Objects.equals(phoneNumber, client.phoneNumber);
 	}
+
 }
 
