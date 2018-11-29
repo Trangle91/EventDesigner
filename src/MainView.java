@@ -7,6 +7,7 @@ public class MainView {
 	public String welcomeScreen() {
 	String message;
 	message = "Welcome to Event Builder";
+	message+= "\n for Optional questions please enter NO if N/A";
 			return message;
 	}
 	

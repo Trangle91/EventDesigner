@@ -18,6 +18,7 @@ public class Client {
 	public Client(String firstName, String lastName, Optional<String> partnerName, String phoneNumber, ClientEventBuilder builder) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.phoneNumber =phoneNumber;
 		this.partnerName = partnerName;
 		this.builder = builder;
 	}
