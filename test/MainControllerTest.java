@@ -8,7 +8,7 @@ class MainControllerTest {
 	void welcomeMessageTest() {
 		MainController controller = new MainController();
 		controller.welcomeMessage();
-		assertNotNull(welcomeMessage);
+		assertNotNull(controller.welcomeMessage);
 	}
-
+	
 }
