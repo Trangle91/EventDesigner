@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 //visibility changed for testing
 
@@ -41,7 +42,17 @@ public enum TallAnchorArrangement  {
 		// TODO Auto-generated method stub
 		return numOfVotivesIncluded;
 	}
-
+	public String ArrangementReport(){
+		String report;
+		report = "\nArrangement Name: " + arrangementName;
+		report += "\nDescription: " + arrangementDescription;
+		NumberFormat fmt = NumberFormat.getCurrencyInstance();
+		
+		report += "\nPrice: " + fmt.format(arrangementPrice);
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
+				
+	
+	}
 	public int getHeightInInches() {
 		return heightInInches;
 	}

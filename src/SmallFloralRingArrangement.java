@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 public enum SmallFloralRingArrangement {
 Instance;
@@ -27,5 +28,15 @@ Instance;
 	
 	public int getNumOfVotivesIncluded() {
 		return numOfVotivesIncluded;
+	}
+	public String ArrangementReport(){
+		String report;
+		report = "\nArrangement Name: " + arrangementName;
+		report += "\nDescription: " + arrangementDescription;
+		NumberFormat fmt = NumberFormat.getCurrencyInstance();
+		
+		report += "\nPrice: " + fmt.format(arrangementPrice);
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded;
+	
 	}
 }
