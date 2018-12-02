@@ -4,7 +4,8 @@ public interface EventReport {
 	
 public String printClientReport(Client client);
 void printEventReport(Client Client, ClientEvent event);
-
+void printEventResults(Client Client, ClientEvent event);
+//void printFloristReport(Florist florist);
 }
 class Reports implements EventReport{
 	
@@ -18,15 +19,21 @@ public String printClientReport(Client client)
 {
 	String clientreport;
 	clientreport = "Client name: " + client.getClientName();
-	clientreport += "\nClient PhoneNumber: " + client.getPhoneNumber();
-	clientreport += "\nClient partner: " + client.getPartnerName();
+	String number = client.getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)","($1) $2-$3");
+	
+	clientreport += "\nClient PhoneNumber: " + number;
+	if(client.getPartnerName() == null)
+		{clientreport += "\nClient partner: N/A";
+			}
+		else {
+	clientreport += "\nClient partner: " + client.getPartnerName();}
 	return clientreport;
 }
 @Override
 public void printEventReport(Client Client, ClientEvent event) {
 	System.out.println(printClientReport(Client));
 	String eventReport="\n*********************************";
-	eventReport += "You've entered the following parameters for your event";
+	eventReport += "\nYou've entered the following parameters for your event";
 	eventReport += "\nDate (YEAR-MONTH-DAY): " + event.getEventDate();
 	
 	eventReport += "\nExpected Budget: " + NumberFormat.getCurrencyInstance().format(event.getBudgetAmount());
@@ -36,6 +43,21 @@ public void printEventReport(Client Client, ClientEvent event) {
 	System.out.println(eventReport);
 	
 }
+
+
+@Override
+public void printEventResults(Client Client, ClientEvent event) {
+	String eventResult = "Based on your selected parameters these reults were generated:";
+	eventResult += "\n";
+	
+	
+	
+}
+//@Override
+//public void printFloristReport(Florist florist) {
+	// TODO Auto-generated method stub
+	
+//}
 
 
 

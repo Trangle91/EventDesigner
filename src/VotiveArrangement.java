@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 
 //no one is able to change these in the program, visibility changed for testing
+import java.text.NumberFormat;
 
 public enum VotiveArrangement {
 	Instance;
@@ -33,6 +34,21 @@ public enum VotiveArrangement {
 	public int getNumOfVotivesIncluded() {
 		return numOfVotivesIncluded;
 	}
+<<<<<<< HEAD
 
 	}
 
+=======
+	public String ArrangementReport(){
+		String report;
+		report = "\nArrangement Name: " + arrangementName;
+		report += "\nDescription: " + arrangementDescription;
+		NumberFormat fmt = NumberFormat.getCurrencyInstance();
+		
+		report += "\nPrice: " + fmt.format(arrangementPrice);
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
+				
+	
+	}
+}
+>>>>>>> branch 'master' of https://github.com/russndi/EventDesigner.git

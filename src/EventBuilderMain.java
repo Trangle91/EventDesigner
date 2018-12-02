@@ -11,6 +11,10 @@ public class EventBuilderMain {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
+		
+		
+		
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.println(view.welcomeScreen());
 		System.out.println("What is the client's name?");
@@ -69,6 +73,12 @@ public class EventBuilderMain {
 		report.printEventReport(currentclient, event);
 		
 		
+		System.out.println("Please choose Arrangements from the list below.");
+		System.out.println(LargeFloralRingArrangement.Instance.ArrangementReport());
+		System.out.println(VotiveArrangement.Instance.ArrangementReport());
+		System.out.println(TallAnchorArrangement.Instance.ArrangementReport());
+		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
+		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
 		
 
 	}
