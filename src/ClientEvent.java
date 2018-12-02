@@ -86,15 +86,17 @@ public class ClientEvent {
 
 	public HashMap<Object, Integer> designEvent(Object...arrangements) { //
 		int totalNumArrangements = arrangements.length;
-		int tempTableCount = 0; //represents tables that have been assigned an arrangement
+		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		Arrays.stream(arrangements).forEach(arrangement -> determinedArrangements.put(arrangement, 0));
+		
 		if (arrangements.length == 0) {
 			//eventually throw a message asking client to select an arrangement type. 
 		}
 
 		placeArrangements(this.getTableCount(), totalNumArrangements, determinedArrangements);				
 		placeRemainingArrangements(this.getTableCount(), determinedArrangements);
+		
 		
 		return determinedArrangements;
 		
@@ -149,6 +151,7 @@ public class ClientEvent {
 		return determinedArrangements;
 	}
 
+	
 }
 
 

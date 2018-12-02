@@ -34,11 +34,7 @@ public enum VotiveArrangement {
 	public int getNumOfVotivesIncluded() {
 		return numOfVotivesIncluded;
 	}
-<<<<<<< HEAD
 
-	}
-
-=======
 	public String ArrangementReport(){
 		String report;
 		report = "\nArrangement Name: " + arrangementName;
@@ -51,4 +47,4 @@ public enum VotiveArrangement {
 	
 	}
 }
->>>>>>> branch 'master' of https://github.com/russndi/EventDesigner.git
+
