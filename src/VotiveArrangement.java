@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+
 //no one is able to change these in the program, visibility changed for testing
 
 public enum VotiveArrangement {
@@ -9,7 +10,7 @@ public enum VotiveArrangement {
 	public  BigDecimal arrangementPrice = new BigDecimal("35.00");
 	public  int numOfVotivesIncluded = 5;
 
-
+ 
 	public static VotiveArrangement getVotiveArrangement() {
 		return Instance;
 	}
@@ -33,4 +34,5 @@ public enum VotiveArrangement {
 		return numOfVotivesIncluded;
 	}
 
-}
+	}
+

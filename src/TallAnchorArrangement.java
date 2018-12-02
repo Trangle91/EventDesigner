@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 //visibility changed for testing
 
@@ -23,7 +24,7 @@ public enum TallAnchorArrangement  {
 		// TODO Auto-generated method stub
 		return arrangementPrice;
 	}
-
+ 
 
 	public String getArrangementName() {
 		// TODO Auto-generated method stub
@@ -46,21 +47,28 @@ public enum TallAnchorArrangement  {
 		return heightInInches;
 	}
 
-	public int determineNumberOfArrangements(int tableCount) {
-		if (tableCount < 5) {
-			//return message saying tall anchor pieces are recommended for a minimum table count of 5
+	public int determineNumTallArrangements(int tableCount, int totalNumArrangements) { 
+		if (totalNumArrangements == 1) {
+			//return message suggesting pairing tall pieces with another type of arrangement
 			return 0;
 		}
 
-		if (tableCount >= 5 && tableCount <= 10) {
-			return 2;
-		}
-
 		else {
-			return tableCount / 5 + 2;
+			if (tableCount < 5) {
+				//return message saying tall anchor pieces are recommended for a minimum table count of 5
+				return 0;
+			}
+
+			if (tableCount >= 5 && tableCount <= 10) {
+				return 2;
+			}
+
+			else {
+				return tableCount / 5 + 2;
+
+			}
 		}
 
 	}
-
 }
 
