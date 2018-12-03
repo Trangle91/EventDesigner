@@ -15,7 +15,7 @@ class ClientEventTest {
 	
 	public Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
 	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
-	public BigDecimal expectedBudgetAmount = new BigDecimal("2000.00");
+	public BigDecimal expectedBudgetAmount = new BigDecimal("3000.00");
 	public Optional<Integer> expectedGuestCount = Optional.empty();
 	public int expectedTableCount = 35;
 	public Optional<String> expectedEventTheme = Optional.empty();
@@ -247,5 +247,30 @@ public void testDesignEvent() {
 	assertTrue(actual.containsKey(TallAnchorArrangement.getTallAnchorArrangement()));
 
 }
+
+@Test
+public void testCalculateEstimatedCostArrangements() {
+	BigDecimal expected = new BigDecimal("2580.00");
+	
+	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
+	determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 9);
+	determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+	determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
+	
+	event.calculateEstimatedCostArrangements(determinedArrangements);
+	
+	BigDecimal actual =event.getEstimatedEventCost();
+		
+	assertEquals(expected, actual);
+}
+
+//@Test
+//public void testCalculateCostIndividualArrangement() {
+//	
+//	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+//	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
+//	
+//}
 	
 }

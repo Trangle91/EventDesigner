@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -5,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.Set;
 //T.L
 public class ClientEvent {
 
+	//potential refactor using a multimap
 
 	private LocalDate eventDate; //required
 	private BigDecimal budgetAmount; //required
@@ -26,11 +29,13 @@ public class ClientEvent {
 	private int numLargeFloralRingArrangements = 0;
 	private int numSmallFloralRingArrangements = 0;
 	private int numVotiveArrangements = 0;
+	private BigDecimal estimatedEventCost;
 
-	private HashMap<Client, ClientEvent> clientEventMap = new HashMap<Client, ClientEvent>();
+	
+
 
 	public ClientEvent() {
-
+		estimatedEventCost = new BigDecimal("0.00");
 	}
 
 
@@ -82,6 +87,15 @@ public class ClientEvent {
 	public void setColorPalette(Optional<String> colorPalette) {
 		this.colorPalette = colorPalette;
 	}
+	
+	public BigDecimal getEstimatedEventCost() {
+		return estimatedEventCost;
+	}
+	
+	private void setEstimatedEventCost(BigDecimal estimatedEventCost) {
+		this.estimatedEventCost = estimatedEventCost;
+	}
+
 
 
 	public HashMap<Object, Integer> designEvent(Object...arrangements) { //
@@ -96,6 +110,7 @@ public class ClientEvent {
 
 		placeArrangements(this.getTableCount(), totalNumArrangements, determinedArrangements);				
 		placeRemainingArrangements(this.getTableCount(), determinedArrangements);
+		calculateEstimatedCostArrangements(determinedArrangements);
 		
 		
 		return determinedArrangements;
@@ -125,7 +140,7 @@ public class ClientEvent {
 	}
 
 	
-	public HashMap<Object, Integer> placeRemainingArrangements(int tableCount, HashMap<Object, Integer> determinedArrangements) { //visibility for testing
+	public HashMap<Object, Integer> placeRemainingArrangements(int tableCount, HashMap<Object, Integer> determinedArrangements) { //visibility for testing, because HashMap accesses out of order it unsure which arrangement will get incrementing consider LinkedHashMap
 		int tablesWithArrangements = determinedArrangements.values().stream().mapToInt(Integer::intValue).sum();
 		int numTablesThatNeedArrangements = tableCount - determinedArrangements.values().stream().mapToInt(Integer::intValue).sum();
 		int index = 0;
@@ -151,6 +166,47 @@ public class ClientEvent {
 		return determinedArrangements;
 	}
 
+	public void calculateEstimatedCostArrangements (HashMap<Object, Integer> determinedArrangements) {
+		BigDecimal totalCost = new BigDecimal ("0.00");
+		
+		Iterator<Map.Entry<Object, Integer>> arrangements = determinedArrangements.entrySet().iterator();
+		
+		while(arrangements.hasNext()) {
+			Map.Entry<Object, Integer> arrangement = arrangements.next();
+			totalCost = totalCost.add(calculateIndividualCostArrangement(arrangement));
+		}
+		
+		setEstimatedEventCost(totalCost);
+	}
+
+
+
+	private BigDecimal calculateIndividualCostArrangement(Entry<Object, Integer> arrangement) {
+		
+		BigDecimal individualCost = new BigDecimal ("0.00");
+		
+		if (arrangement.getKey().equals(TallAnchorArrangement.getTallAnchorArrangement())) {
+			return individualCost.add(TallAnchorArrangement.getTallAnchorArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		}
+		
+		if (arrangement.getKey().equals(VotiveArrangement.getVotiveArrangement())) {
+			return individualCost.add(VotiveArrangement.getVotiveArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		}
+		
+		if (arrangement.getKey().equals(SmallFloralRingArrangement.getSmallFloralRingArrangement())) {
+			return individualCost.add(SmallFloralRingArrangement.getSmallFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		}
+		
+		if (arrangement.getKey().equals(LargeFloralRingArrangement.getLargeFloralRingArrangement())) {
+			return individualCost.add(LargeFloralRingArrangement.getLargeFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		}
+		
+		if (arrangement.getKey().equals(LowFloralArrangement.getLowFloralArrangement())) {
+			return individualCost.add(LowFloralArrangement.getLowFloralArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		}
+		
+		return individualCost;
+	}
 	
 }
 

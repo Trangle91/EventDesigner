@@ -19,7 +19,7 @@ class ArrangementTest {
 	@Test
 	void testGetTallAnchorArrangementPrice() {
 		BigDecimal expected = tallAnchorArrangement.arrangementPrice;
-		BigDecimal actual = tallAnchorArrangement.getArrangmentPrice();
+		BigDecimal actual = tallAnchorArrangement.getArrangementPrice();
 		assertEquals(expected, actual);
 	}
 	

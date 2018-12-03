@@ -24,7 +24,7 @@ public enum TallAnchorArrangement  {
 		return Instance;
 	}
 
-	public BigDecimal getArrangmentPrice() {
+	public BigDecimal getArrangementPrice() {
 		// TODO Auto-generated method stub
 		return arrangementPrice;
 	}

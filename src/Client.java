@@ -18,6 +18,7 @@ public class Client {
 	public ClientEventBuilder builder;
 	
 	private HashMap<String, Client> clientMap = new HashMap<String, Client>();
+	private HashMap<Client, ClientEvent> clientEventMap = new HashMap<Client, ClientEvent>();
 	
 	
 
@@ -78,6 +79,8 @@ public class Client {
 				.withEventTheme(eventTheme)
 				.withColorPalette(colorPalette)
 				.buildClientEvent();
+		
+		clientEventMap.put(this, event);
 		
 		return event;
 	}

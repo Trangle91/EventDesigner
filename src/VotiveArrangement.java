@@ -16,7 +16,7 @@ public enum VotiveArrangement {
 		return Instance;
 	}
 
-	public BigDecimal getArrangmentPrice() {
+	public BigDecimal getArrangementPrice() {
 		
 		return arrangementPrice;
 	}

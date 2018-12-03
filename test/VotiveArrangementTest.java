@@ -17,7 +17,7 @@ class VotiveArrangementTest {
 	@Test
 	void testGetArrangementPrice() {
 		BigDecimal actual = votiveArrangement.arrangementPrice;
-		BigDecimal expected = votiveArrangement.getArrangmentPrice();
+		BigDecimal expected = votiveArrangement.getArrangementPrice();
 		assertEquals(expected, actual);
 	}
 	
