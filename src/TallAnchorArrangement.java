@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 
 public enum TallAnchorArrangement  {
 	Instance;
-
+	public int arrangementNum = 4;
 	public String arrangementName = "Tall anchor piece";
 	public String arrangementDescription = "a tall clear glass pilsner base topped with a removable plastic dish filled with "
 			+ "flowers of a various heights. Serves as an excellent eye catching piece that will transform any venue when "
@@ -44,12 +44,13 @@ public enum TallAnchorArrangement  {
 	}
 	public String ArrangementReport(){
 		String report;
-		report = "\nArrangement Name: " + arrangementName;
+		report = "Arrangement #:" + arrangementNum;
+		report += "\nArrangement Name: " + arrangementName;
 		report += "\nDescription: " + arrangementDescription;
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
 		
 		report += "\nPrice: " + fmt.format(arrangementPrice);
-		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************";
 				
 	
 	}

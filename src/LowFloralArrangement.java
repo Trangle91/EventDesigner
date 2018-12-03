@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 //visibility for testing
 public enum LowFloralArrangement {
 Instance;
+	public int arrangementNum = 2;
 	public String arrangementName = "low floral heavy piece";
 	public String arrangementDescription = "a low centerpiece in a take home container featuring an impressive number of flowers accompanied by 3 mixed votives";
 	public  BigDecimal arrangementPrice = new BigDecimal("60.00");
@@ -30,7 +31,8 @@ Instance;
 	}
 	public String ArrangementReport(){
 		String report;
-		report = "\nArrangement Name: " + arrangementName;
+		report = "Arrangement #:" + arrangementNum;
+		report += "\nArrangement Name: " + arrangementName;
 		report += "\nDescription: " + arrangementDescription;
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
 		

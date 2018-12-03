@@ -3,6 +3,7 @@ import java.text.NumberFormat;
 
 public enum LargeFloralRingArrangement {
 Instance;
+	public int arrangementNum = 1; //added to help user select from console ui
 	public String arrangementName = "large floral ring";
 	public String arrangementDescription = "a large ring in a take home container filled with sumptuous flowers. "
 			+ "Centered in the ring is a cyclinder vase with a large pillar candle inside. "
@@ -31,12 +32,13 @@ Instance;
 	}
 	public String ArrangementReport(){
 		String report;
-		report = "\nArrangement Name: " + arrangementName;
+		report = "Arrangement #:" + arrangementNum;
+		report += "\nArrangement Name: " + arrangementName;
 		report += "\nDescription: " + arrangementDescription;
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
 		
 		report += "\nPrice: " + fmt.format(arrangementPrice);
-		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************";
 				
 	
 	}

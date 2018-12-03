@@ -1,3 +1,6 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -5,9 +8,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 public class EventBuilderMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
@@ -75,11 +83,21 @@ public class EventBuilderMain {
 		
 		System.out.println("Please choose Arrangements from the list below.");
 		System.out.println(LargeFloralRingArrangement.Instance.ArrangementReport());
+		JFrame frame = new JFrame();
+		String imgfile = "file:///Users/russelndip/ReceptionBuilder/SEIS635-ReceptionBuilder/images/LargeFloralHeavyRing.jpg]";
+		BufferedImage img = ImageIO.read(new File(imgfile));
+		ImageIcon icon = new ImageIcon(img);
+		JLabel label = new JLabel(icon);
+		frame.add(label);
+		frame.setVisible(true);
 		System.out.println(VotiveArrangement.Instance.ArrangementReport());
 		System.out.println(TallAnchorArrangement.Instance.ArrangementReport());
 		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
 		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
 		
+		System.out.println("Write the arrangement # of the arrangements you wish to select(up to 5 in each line");
+		String arrangementChoice1 = scan.nextLine();
+	
 
 	}
 

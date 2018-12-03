@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 
 public enum VotiveArrangement {
 	Instance;
-	
+	public int arrangementNum = 5;
 	public String arrangementName = "votive arrangement";
 	public String arrangementDescription = "a series of mixed votives in either gold or silver accentuated by lush greenery and florals";
 	public  BigDecimal arrangementPrice = new BigDecimal("35.00");
@@ -35,12 +35,13 @@ public enum VotiveArrangement {
 	}
 	public String ArrangementReport(){
 		String report;
-		report = "\nArrangement Name: " + arrangementName;
+		report = "Arrangement #:" + arrangementNum;
+		report += "\nArrangement Name: " + arrangementName;
 		report += "\nDescription: " + arrangementDescription;
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
 		
 		report += "\nPrice: " + fmt.format(arrangementPrice);
-		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************";
 				
 	
 	}
