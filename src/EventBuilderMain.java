@@ -12,9 +12,6 @@ public class EventBuilderMain {
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
 		
-		
-		
-		
 		Scanner scan = new Scanner(System.in);
 		System.out.println(view.welcomeScreen());
 		System.out.println("What is the client's name?");
