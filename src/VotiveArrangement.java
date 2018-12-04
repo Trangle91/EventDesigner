@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+
 //no one is able to change these in the program, visibility changed for testing
 import java.text.NumberFormat;
 
@@ -10,12 +11,12 @@ public enum VotiveArrangement {
 	public  BigDecimal arrangementPrice = new BigDecimal("35.00");
 	public  int numOfVotivesIncluded = 5;
 
-
+ 
 	public static VotiveArrangement getVotiveArrangement() {
 		return Instance;
 	}
 
-	public BigDecimal getArrangmentPrice() {
+	public BigDecimal getArrangementPrice() {
 		
 		return arrangementPrice;
 	}
@@ -33,6 +34,7 @@ public enum VotiveArrangement {
 	public int getNumOfVotivesIncluded() {
 		return numOfVotivesIncluded;
 	}
+
 	public String ArrangementReport(){
 		String report;
 		report = "Arrangement #:" + arrangementNum;
@@ -46,3 +48,4 @@ public enum VotiveArrangement {
 	
 	}
 }
+

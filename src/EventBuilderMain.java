@@ -95,7 +95,7 @@ public class EventBuilderMain {
 		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
 		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
 		
-		System.out.println("Write the arrangement # of the arrangements you wish to select(up to 5 in each line");
+	view.selectArrangementType();
 		String arrangementChoice1 = scan.nextLine();
 	
 

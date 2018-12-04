@@ -19,4 +19,14 @@ public class MainView {
 		System.out.println(result);
 	}
 	
+	public void selectArrangementType()
+	{
+		System.out.println("Please select your arrangement type(s)");
+	}
+	
+	public void printResults()
+	{
+		System.ou
+	}
+	
 }

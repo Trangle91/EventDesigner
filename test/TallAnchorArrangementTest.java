@@ -19,7 +19,7 @@ class ArrangementTest {
 	@Test
 	void testGetTallAnchorArrangementPrice() {
 		BigDecimal expected = tallAnchorArrangement.arrangementPrice;
-		BigDecimal actual = tallAnchorArrangement.getArrangmentPrice();
+		BigDecimal actual = tallAnchorArrangement.getArrangementPrice();
 		assertEquals(expected, actual);
 	}
 	
@@ -55,7 +55,7 @@ class ArrangementTest {
 	void testDetermineNumberOfArrangements0() {
 		int tableCount = 7;
 		int expected = 2;
-		int actual = tallAnchorArrangement.determineNumberOfArrangements(tableCount);
+		int actual = tallAnchorArrangement.determineNumTallArrangements(tableCount, 2);
 		assertEquals(expected, actual);
 	}
 	
@@ -63,7 +63,7 @@ class ArrangementTest {
 	void testDetermineNumberOfArrangements1() {
 		int tableCount = 35;
 		int expected = 9;
-		int actual = tallAnchorArrangement.determineNumberOfArrangements(tableCount);
+		int actual = tallAnchorArrangement.determineNumTallArrangements(tableCount, 2);
 		assertEquals(expected, actual);
 	}
 	
@@ -71,7 +71,7 @@ class ArrangementTest {
 	void testDetermineNumberOfArrangements2() {
 		int tableCount = 46;
 		int expected = 11;
-		int actual = tallAnchorArrangement.determineNumberOfArrangements(tableCount);
+		int actual = tallAnchorArrangement.determineNumTallArrangements(tableCount, 2);
 		assertEquals(expected, actual);
 	}
 	

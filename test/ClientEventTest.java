@@ -3,6 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -12,7 +15,7 @@ class ClientEventTest {
 	
 	public Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
 	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
-	public BigDecimal expectedBudgetAmount = new BigDecimal("2000.00");
+	public BigDecimal expectedBudgetAmount = new BigDecimal("3000.00");
 	public Optional<Integer> expectedGuestCount = Optional.empty();
 	public int expectedTableCount = 35;
 	public Optional<String> expectedEventTheme = Optional.empty();
@@ -92,20 +95,182 @@ class ClientEventTest {
 	}
 	
 	@Test
-	public void testDesignEvent0() { //client only wants tall pieces
-		int expected = 35;
-		int actual = event.designEvent(expectedTableCount, expectedBudgetAmount, TallAnchorArrangement.getTallAnchorArrangement());
+	public void testPlaceArrangements0() { //only one type of arrangement, no talls
+		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
+		expected.put(VotiveArrangement.getVotiveArrangement(), 35);
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 35);
+		
+		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
+				determinedArrangements.size(), determinedArrangements);
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void testDesignEvent1() { //client wants tall pieces and 3 other arrangements
-		int expected = 8;
-		int actual = event.designEvent(expectedTableCount, expectedBudgetAmount, TallAnchorArrangement.getTallAnchorArrangement(), 
-				VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(),
-				LowFloralArrangement.getLowFloralArrangement()); 
+	public void testPlaceArrangements1() { //two types of arrangements, no talls
+		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
+		expected.put(VotiveArrangement.getVotiveArrangement(), 17);
+		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 17);
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		
+		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
+				determinedArrangements.size(), determinedArrangements);
+		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testPlaceArrangements2() { //three types of arrangements, no talls
+		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
+		expected.put(VotiveArrangement.getVotiveArrangement(), 11);
+		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 11);
+		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 11);
 		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		
+		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
+				determinedArrangements.size(), determinedArrangements);
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testPlaceArrangements3() { //four types of arrangements, no talls
+		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
+		expected.put(VotiveArrangement.getVotiveArrangement(), 8);
+		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 8);
+		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+		expected.put(LowFloralArrangement.getLowFloralArrangement(), 8);
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		
+		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
+				determinedArrangements.size(), determinedArrangements);
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testPlaceArrangements4() { //all types
+		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
+		expected.put(VotiveArrangement.getVotiveArrangement(), 6);
+		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 6);
+		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 6);
+		expected.put(LowFloralArrangement.getLowFloralArrangement(), 6);
+		expected.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>(); //designEvent does this
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 0);
+		
+		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
+				determinedArrangements.size(), determinedArrangements);
+		
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testPlaceRemainingArrangements0() { //no tall arrangements, tests sum of arrangements in the HashMap are the same as the number of tables
+		HashMap<Object, Integer> expectedArrangements = new HashMap<Object, Integer>();
+		expectedArrangements.put(VotiveArrangement.getVotiveArrangement(), 12);
+		expectedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 12);
+		expectedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 11);
+		
+		int expected = 35;
+		
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		
+		event.placeArrangements(event.getTableCount(), 4, determinedArrangements);
+		
+		HashMap<Object, Integer> actualArrangements = event.placeRemainingArrangements(event.getTableCount(), determinedArrangements);
+		int actual = actualArrangements.values().stream().mapToInt(Integer::intValue).sum();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testPlaceRemainingArrangement1() { //4 arrangements included tall ones, tests sum of arrangements in the HashMap are the same as the number of tables & the number of Tall Arrangements doesn't change
+		HashMap<Object, Integer> expectedArrangements = new HashMap<Object, Integer>();
+		expectedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
+		expectedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 9);
+		expectedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+		expectedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
+		
+		int expected = 35;
+		
+		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
+		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 0);
+		
+		event.placeArrangements(event.getTableCount(), 4, determinedArrangements);
+		
+		HashMap<Object, Integer> actualArrangements = event.placeRemainingArrangements(event.getTableCount(), determinedArrangements);
+		int actual = actualArrangements.values().stream().mapToInt(Integer::intValue).sum();
+		
+		assertEquals(expected, actual); //test sums
+		assertEquals(expectedArrangements.get(TallAnchorArrangement.getTallAnchorArrangement()), actualArrangements.get(TallAnchorArrangement.getTallAnchorArrangement()));
+	}
+	
+@Test
+public void testDesignEvent() {
+	
+	HashMap<Object, Integer> actual = event.designEvent(VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(), 
+						LargeFloralRingArrangement.getLargeFloralRingArrangement(), 
+						TallAnchorArrangement.getTallAnchorArrangement());
+	
+	assertTrue(actual.containsKey(VotiveArrangement.getVotiveArrangement()));
+	assertTrue(actual.containsKey(SmallFloralRingArrangement.getSmallFloralRingArrangement()));
+	assertTrue(actual.containsKey(LargeFloralRingArrangement.getLargeFloralRingArrangement()));
+	assertTrue(actual.containsKey(TallAnchorArrangement.getTallAnchorArrangement()));
 
+}
+
+@Test
+public void testCalculateEstimatedCostArrangements() {
+	BigDecimal expected = new BigDecimal("2580.00");
+	
+	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
+	determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 9);
+	determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+	determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
+	
+	event.calculateEstimatedCostArrangements(determinedArrangements);
+	
+	BigDecimal actual =event.getEstimatedEventCost();
+		
+	assertEquals(expected, actual);
+}
+
+//@Test
+//public void testCalculateCostIndividualArrangement() {
+//	
+//	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
+//	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
+//	
+//}
+	
 }
