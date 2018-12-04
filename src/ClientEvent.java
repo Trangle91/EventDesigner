@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
@@ -30,7 +31,6 @@ public class ClientEvent {
 	private int numSmallFloralRingArrangements = 0;
 	private int numVotiveArrangements = 0;
 	private BigDecimal estimatedEventCost;
-
 	
 
 
@@ -206,6 +206,30 @@ public class ClientEvent {
 		}
 		
 		return individualCost;
+	}
+	
+	@Override
+	
+	public int hashCode() {
+		return Objects.hash(eventDate, budgetAmount, tableCount, guestCount, eventTheme, colorPalette);
+		
+	}
+	
+	@Override
+	
+	public boolean equals(Object o) {
+		if (o == this) return true;
+		if (!(o instanceof ClientEvent)) {
+			return false;
+		}
+		
+		ClientEvent clientEvent = (ClientEvent) o;
+		return eventDate == clientEvent.eventDate &&
+				Objects.equals(budgetAmount, clientEvent.budgetAmount) &&
+				Objects.equals(tableCount, clientEvent.tableCount) &&
+				Objects.equals(guestCount, clientEvent.guestCount) &&
+				Objects.equals(eventTheme, clientEvent.eventTheme) &&
+				Objects.equals(colorPalette, clientEvent.colorPalette);
 	}
 	
 }
