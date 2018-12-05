@@ -51,7 +51,7 @@ public void printEventResults(Client client)
 	String eventResult = "Based on your selected parameters these reults were generated:";
 	eventResult += "\nEstimated Event Cost:" + client.event.getEstimatedEventCost();
 	
-	
+	System.out.println(eventResult);
 	
 	
 	

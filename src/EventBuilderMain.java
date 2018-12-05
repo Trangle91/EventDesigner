@@ -89,7 +89,7 @@ public class EventBuilderMain {
 		frame.setSize(lfra.getIconWidth(), lfra.getIconHeight());
 		frame.setVisible(true);
 		System.out.println(VotiveArrangement.Instance.ArrangementReport());
-		JFrame frame1 = new JFrame("Votive Arrangement(2)");
+		JFrame frame1 = new JFrame("Votive Arrangement(5)");
 		
 		ImageIcon votive = new ImageIcon("images/VotivesAndGreenery.jpg");
 		
@@ -98,7 +98,7 @@ public class EventBuilderMain {
 		frame1.add(label1);
 		frame1.setVisible(true);
 		System.out.println(TallAnchorArrangement.Instance.ArrangementReport());
-		JFrame frame2 = new JFrame("Tall Anchor Arrangement (3)");
+		JFrame frame2 = new JFrame("Tall Anchor Arrangement (4)");
 		ImageIcon taa = new ImageIcon("images/TallAnchorPiece.jpg");
 		
 		JLabel label2 = new JLabel(taa);
@@ -106,31 +106,29 @@ public class EventBuilderMain {
 		frame2.add(label2);
 		frame2.setVisible(true);
 		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
-		JFrame frame3 = new JFrame("Low Floral Arrangement (4)");
+		JFrame frame3 = new JFrame("Low Floral Arrangement (2)");
 		ImageIcon lfa= new ImageIcon("images/LowFloralHeavyArrangement.jpg");
 		JLabel label3 = new JLabel(lfa);
 		frame3.setSize(lfa.getIconWidth(), lfa.getIconHeight());
 		frame3.add(label3);
 		frame3.setVisible(true);
 		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
-		JFrame frame4 = new JFrame("Samll Floral Ring Arrangement (5)");
+		JFrame frame4 = new JFrame("Samll Floral Ring Arrangement (3)");
 		ImageIcon sfra= new ImageIcon("images/SmallFloralRing.jpg");
 		JLabel label4 = new JLabel(sfra);
 		frame4.setSize(sfra.getIconWidth(), sfra.getIconHeight());
 		frame4.add(label4);
 		frame4.setVisible(true);
 		
-	view.selectArrangementType();
-
+	
 
 	int arrangementChoice;
-	while ((arrangementChoice = scan.nextInt()) != 0 )
-		{
-		
-		}
-		
-		
-		
+	do {
+		view.selectArrangementType();
+		arrangementChoice = scan.nextInt();
+		getResults(arrangementChoice);
+	} while (arrangementChoice != 0);
+			
 	report.printEventResults(currentclient);
 	
 	}

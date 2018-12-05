@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class MainView {
-	MainController controller; 
+	
 	
 	public String welcomeScreen() {
 	String message;
@@ -21,7 +21,7 @@ public class MainView {
 	
 	public void selectArrangementType()
 	{
-		System.out.println("Please select your arrangement type(s): One number in each line. Write Done when finished entering all arrangements.");
+		System.out.println("Please select your arrangement type(s): One number in each line. Enter 0 when finished entering all arrangements.");
 	}
 	
 	public void printResults()
