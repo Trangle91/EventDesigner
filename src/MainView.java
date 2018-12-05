@@ -21,12 +21,12 @@ public class MainView {
 	
 	public void selectArrangementType()
 	{
-		System.out.println("Please select your arrangement type(s)");
+		System.out.println("Please select your arrangement type(s): One number in each line. Write Done when finished entering all arrangements.");
 	}
 	
 	public void printResults()
 	{
-		System.ou
+		
 	}
 	
 }

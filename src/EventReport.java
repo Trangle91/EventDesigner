@@ -3,9 +3,9 @@ import java.text.NumberFormat;
 public interface EventReport {
 	
 public String printClientReport(Client client);
+void printEventResults(Client client);
 void printEventReport(Client Client, ClientEvent event);
-void printEventResults(Client Client, ClientEvent event);
-//void printFloristReport(Florist florist);
+void printFloristReport(Florist florist);
 }
 class Reports implements EventReport{
 	
@@ -46,19 +46,25 @@ public void printEventReport(Client Client, ClientEvent event) {
 
 
 @Override
-public void printEventResults(Client Client, ClientEvent event) {
+public void printEventResults(Client client)
+{
 	String eventResult = "Based on your selected parameters these reults were generated:";
-	eventResult += "\n";
+	eventResult += "\nEstimated Event Cost:" + client.event.getEstimatedEventCost();
+	
+	
 	
 	
 	
 }
-//@Override
-//public void printFloristReport(Florist florist) {
-	// TODO Auto-generated method stub
-	
-//}
-
-
+@Override
+public void printFloristReport(Florist florist) {
+		String floristReport = "";
+		floristReport += "\n*********************************";
+		floristReport += "\nCompany name: "+ florist.getFloristName();
+		floristReport += "\nContact number: "+ florist.getFloristContactNumber();
+		floristReport += "\nMinimum budget required: "+ florist.getMinimumBudget();
+		floristReport += "\nEstimated fee: "+ florist.getTotalFee();
+		System.out.println(floristReport);
+}
 
 }

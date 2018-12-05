@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -14,14 +15,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 public class EventBuilderMain {
-
+	static Client currentclient;
 	public static void main(String[] args) throws IOException {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
-		
-		
-		
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println(view.welcomeScreen());
@@ -40,7 +38,7 @@ public class EventBuilderMain {
 		Optional<String> partnerName = Optional.ofNullable(partner_name);
 	
 
-		Client currentclient = new Client(first_name, last_name,partnerName, phone_num, builder);
+		currentclient = new Client(first_name, last_name,partnerName, phone_num, builder);
 		
 		System.out.println("Date of the Event? (YEAR-MONTH-DAY)?");
 	
@@ -83,22 +81,78 @@ public class EventBuilderMain {
 		
 		System.out.println("Please choose Arrangements from the list below.");
 		System.out.println(LargeFloralRingArrangement.Instance.ArrangementReport());
-		JFrame frame = new JFrame();
-		String imgfile = "file:///Users/russelndip/ReceptionBuilder/SEIS635-ReceptionBuilder/images/LargeFloralHeavyRing.jpg]";
-		BufferedImage img = ImageIO.read(new File(imgfile));
-		ImageIcon icon = new ImageIcon(img);
-		JLabel label = new JLabel(icon);
+		JFrame frame = new JFrame("Large FLoral Ring Arrangement(1)");
+		ImageIcon lfra = new ImageIcon("images/LargeFloralHeavyRing.jpg");
+		
+		JLabel label = new JLabel(lfra);
 		frame.add(label);
+		frame.setSize(lfra.getIconWidth(), lfra.getIconHeight());
 		frame.setVisible(true);
 		System.out.println(VotiveArrangement.Instance.ArrangementReport());
+		JFrame frame1 = new JFrame("Votive Arrangement(2)");
+		
+		ImageIcon votive = new ImageIcon("images/VotivesAndGreenery.jpg");
+		
+		JLabel label1 = new JLabel(votive);
+		frame1.setSize(votive.getIconWidth(), votive.getIconHeight());
+		frame1.add(label1);
+		frame1.setVisible(true);
 		System.out.println(TallAnchorArrangement.Instance.ArrangementReport());
+		JFrame frame2 = new JFrame("Tall Anchor Arrangement (3)");
+		ImageIcon taa = new ImageIcon("images/TallAnchorPiece.jpg");
+		
+		JLabel label2 = new JLabel(taa);
+		frame2.setSize(taa.getIconWidth(), taa.getIconHeight());
+		frame2.add(label2);
+		frame2.setVisible(true);
 		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
+		JFrame frame3 = new JFrame("Low Floral Arrangement (4)");
+		ImageIcon lfa= new ImageIcon("images/LowFloralHeavyArrangement.jpg");
+		JLabel label3 = new JLabel(lfa);
+		frame3.setSize(lfa.getIconWidth(), lfa.getIconHeight());
+		frame3.add(label3);
+		frame3.setVisible(true);
 		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
+		JFrame frame4 = new JFrame("Samll Floral Ring Arrangement (5)");
+		ImageIcon sfra= new ImageIcon("images/SmallFloralRing.jpg");
+		JLabel label4 = new JLabel(sfra);
+		frame4.setSize(sfra.getIconWidth(), sfra.getIconHeight());
+		frame4.add(label4);
+		frame4.setVisible(true);
 		
 	view.selectArrangementType();
-		String arrangementChoice1 = scan.nextLine();
+
+
+	int arrangementChoice;
+	while ((arrangementChoice = scan.nextInt()) != 0 )
+		{
+		
+		}
+		
+		
+		
+	report.printEventResults(currentclient);
 	
-
 	}
-
+	
+	public static void getResults(int choice)
+	{
+		Object arrange = null;
+		switch (choice) {
+		case 1: arrange = LargeFloralRingArrangement.Instance;
+		break;
+		case 2: arrange = VotiveArrangement.Instance;
+		break;
+		case 3: arrange = TallAnchorArrangement.Instance; //cannot select just tall arrangement
+		break;
+		case 4: arrange = LowFloralArrangement.Instance;
+		break;
+		case 5: arrange = SmallFloralRingArrangement.Instance;
+		currentclient.event.designEvent(arrange);
+	}		
+				
+				
+	
+	}
 }
+
