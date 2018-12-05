@@ -14,11 +14,13 @@ public class Client {
 	public Optional<String> partnerName = Optional.empty(); //replace with builder if more optional fields added
 	public String phoneNumber;
 	public ClientEvent event;
+	private ClientEventMapKey clientEventMapKey;
 
 	public ClientEventBuilder builder;
 	
 	private HashMap<String, Client> clientMap = new HashMap<String, Client>();
-	private HashMap<Client, ClientEvent> clientEventMap = new HashMap<Client, ClientEvent>();
+	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
+	
 	
 	
 
@@ -80,9 +82,16 @@ public class Client {
 				.withColorPalette(colorPalette)
 				.buildClientEvent();
 		
-		clientEventMap.put(this, event);
+		ClientEventMapKey clientEventMapKey = new ClientEventMapKey(this, eventDate);
+		
+		clientEventMap.put(clientEventMapKey, event);
 		
 		return event;
+	}
+	
+	public ClientEvent getClientEventFromMap(LocalDate eventDate) { //used after saving an event to the map, can return null if not in map
+		ClientEventMapKey  key = new ClientEventMapKey(this, eventDate);
+		return clientEventMap.get(key);
 	}
 	
 	@Override
