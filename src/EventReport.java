@@ -50,7 +50,7 @@ public void printEventResults(Client client)
 {
 	String eventResult = "Based on your selected parameters these reults were generated:";
 	eventResult += "\nEstimated Event Cost:" + client.event.getEstimatedEventCost();
-	
+	eventResult += "These are the florists available in your budget";
 	System.out.println(eventResult);
 	
 	
