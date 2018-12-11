@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class Florist {
@@ -11,7 +12,7 @@ public class Florist {
 	private BigDecimal takeDownFee;
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
-
+	private HashMap<String, Florist> floristMap;
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
 		this.companyName = companyName;
@@ -28,7 +29,7 @@ public class Florist {
 		this.takeDownFee = takeDownFee;
 		this.generalServiceFee = generalServiceFee;
 		minimumBudget = Optional.empty();
-		
+		floristMap = new HashMap<String, Florist>();
 	}
 
 	public ClientEvent getEvent() {
@@ -74,17 +75,10 @@ public class Florist {
 	public String getFloristContactNumber() {
 		return phoneNumber;
 	}
-	
-	public boolean getSelected() { //do more
-		return true;
-	}
+
 	public BigDecimal getTotalFee() {
 		return this.generalServiceFee.add(this.deliveryFee).add(this.takeDownFee);
 		
-	}
-	
-	public boolean cancelEvent() { //do more
-		return false;
 	}
 	
 }

@@ -2,6 +2,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,7 +23,6 @@ public class Client {
 	
 	private HashMap<String, Client> clientMap = new HashMap<String, Client>();
 	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
-	
 	
 	
 
@@ -87,6 +89,22 @@ public class Client {
 		clientEventMap.put(clientEventMapKey, event);
 		
 		return event;
+	}
+	
+	public LinkedList<Florist> floristOptions(HashMap<String, Florist> florists){
+		LinkedList<Florist> floristList = new LinkedList<Florist>();
+		BigDecimal estimatedCost = new BigDecimal("0.0");
+		Iterator<Map.Entry<String, Florist>> it = florists.entrySet().iterator();
+		
+		while(it.hasNext()) {
+			Map.Entry<String, Florist> florist = it.next();
+			Florist potentialFlorist = florist.getValue();
+			estimatedCost = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
+			int i = estimatedCost.compareTo(event.getBudgetAmount());
+			if( i == (-1))
+				floristList.add(potentialFlorist);
+		}
+		return floristList;		
 	}
 	
 	public ClientEvent getClientEventFromMap(LocalDate eventDate) { //used after saving an event to the map, can return null if not in map
