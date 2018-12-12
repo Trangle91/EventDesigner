@@ -2,6 +2,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,7 +23,6 @@ public class Client {
 	
 	private HashMap<String, Client> clientMap = new HashMap<String, Client>();
 	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
-	
 	
 	
 
@@ -88,6 +90,8 @@ public class Client {
 		
 		return event;
 	}
+	
+
 	
 	public ClientEvent getClientEventFromMap(LocalDate eventDate) { //used after saving an event to the map, can return null if not in map
 		ClientEventMapKey  key = new ClientEventMapKey(this, eventDate);

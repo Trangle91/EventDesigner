@@ -21,6 +21,8 @@ public class EventBuilderMain {
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
 		
+		
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.println(view.welcomeScreen());
 		System.out.println("What is the client's name?");
@@ -57,7 +59,7 @@ public class EventBuilderMain {
 		int guest_count = Integer.parseInt(guestcount);
 		Optional<Integer> guestCount = Optional.ofNullable(guest_count);
 		
-		System.out.println("(Optional) Table count?");
+		System.out.println("Table count?");
 		int tableCount = scan.nextInt();
 	
 		
@@ -76,7 +78,7 @@ public class EventBuilderMain {
 		//System.out.println(report.printClientReport(currentclient));
 
 	ClientEvent event = currentclient.createEvent(eventDate, budgetAmount, guestCount, tableCount, eventTheme, colorPalette);
-		report.printEventReport(currentclient, event);
+	
 		
 		
 		System.out.println("Please choose Arrangements from the list below.");
@@ -121,15 +123,17 @@ public class EventBuilderMain {
 		frame4.setVisible(true);
 		
 	
-
+		view.selectArrangementType();
 	int arrangementChoice;
 	do {
-		view.selectArrangementType();
+		
 		arrangementChoice = scan.nextInt();
 		getResults(arrangementChoice);
 	} while (arrangementChoice != 0);
-			
-	report.printEventResults(currentclient);
+	
+	report.printEventReport(currentclient, event);		
+	//report.printEventResults(currentclient, );
+
 	
 	}
 	

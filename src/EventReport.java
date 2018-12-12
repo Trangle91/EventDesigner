@@ -1,9 +1,10 @@
 import java.text.NumberFormat;
+import java.util.LinkedList;
 
 public interface EventReport {
 	
 public String printClientReport(Client client);
-void printEventResults(Client client);
+void printEventResults(Client client, LinkedList<Florist> floristList);
 void printEventReport(Client Client, ClientEvent event);
 void printFloristReport(Florist florist);
 }
@@ -39,18 +40,21 @@ public void printEventReport(Client Client, ClientEvent event) {
 	eventReport += "\nExpected Budget: " + NumberFormat.getCurrencyInstance().format(event.getBudgetAmount());
 	eventReport += "\nTable Amount: " + event.getTableCount();
 	if (event.getGuestCount() != null)
-	eventReport += "\nGuest Count: " + event.getGuestCount();
+	eventReport += "\nGuest Count: \t" + event.getGuestCount() + ""
+			+ "************************************************\n\n\n";
 	System.out.println(eventReport);
 	
 }
 
 
 @Override
-public void printEventResults(Client client)
+public void printEventResults(Client client, LinkedList<Florist> floristList)
 {
-	String eventResult = "Based on your selected parameters these reults were generated:";
-	eventResult += "\nEstimated Event Cost:" + client.event.getEstimatedEventCost();
+	String eventResult = "Based on your selected parameters these results were generated:";
+	eventResult += "Your budget was: " + client.event.getBudgetAmount();
+	eventResult += "\nEstimated Event Cost: " + client.event.getEstimatedEventCost() + "\n";
 	eventResult += "These are the florists available in your budget";
+	eventResult += floristList.toString();
 	System.out.println(eventResult);
 	
 	

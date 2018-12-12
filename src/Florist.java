@@ -1,7 +1,11 @@
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Optional;
 
-public class Florist {
+public class Florist { //still needs a method that returns florist(s) after input of budget from arrangement
 
 	private Client client;
 	private ClientEvent event;
@@ -11,7 +15,7 @@ public class Florist {
 	private BigDecimal takeDownFee;
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
-
+	private HashMap<String, Florist> floristMap;
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
 		this.companyName = companyName;
@@ -28,9 +32,23 @@ public class Florist {
 		this.takeDownFee = takeDownFee;
 		this.generalServiceFee = generalServiceFee;
 		minimumBudget = Optional.empty();
-		
+		floristMap = new HashMap<String, Florist>();
 	}
-
+	public LinkedList<Florist> floristOptions(HashMap<String, Florist> florists){
+		LinkedList<Florist> floristList = new LinkedList<Florist>();
+		BigDecimal estimatedCost = new BigDecimal("0.0");
+		Iterator<Map.Entry<String, Florist>> it = florists.entrySet().iterator();
+		
+		while(it.hasNext()) {
+			Map.Entry<String, Florist> florist = it.next();
+			Florist potentialFlorist = florist.getValue();
+			estimatedCost = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
+			int i = estimatedCost.compareTo(event.getBudgetAmount());
+			if( i == (-1))
+				floristList.add(potentialFlorist);
+		}
+		return floristList;		
+	}
 	public ClientEvent getEvent() {
 		return event;
 	}
@@ -74,17 +92,21 @@ public class Florist {
 	public String getFloristContactNumber() {
 		return phoneNumber;
 	}
-	
-	public boolean getSelected() { //do more
-		return true;
-	}
+
 	public BigDecimal getTotalFee() {
 		return this.generalServiceFee.add(this.deliveryFee).add(this.takeDownFee);
 		
 	}
-	
-	public boolean cancelEvent() { //do more
-		return false;
+	public String toString()
+	{
+		String floristReport = "";
+		floristReport += "\n*********************************";
+		floristReport += "\nCompany name: "+ companyName;
+		floristReport += "\nContact number: "+ phoneNumber;
+		floristReport += "\nMinimum budget required: "+ minimumBudget;
+		floristReport += "\nEstimated fee: "+ deliveryFee + takeDownFee + generalServiceFee;
+		return floristReport;
 	}
+	
 	
 }
