@@ -26,10 +26,7 @@ public class ClientEvent {
 	private Optional<String> colorPalette = Optional.empty(); //optional
 
 	private int numTallAnchorArrangements = 0;
-	private int numLowFloralArrangements = 0;
-	private int numLargeFloralRingArrangements = 0;
-	private int numSmallFloralRingArrangements = 0;
-	private int numVotiveArrangements = 0;
+
 	private BigDecimal estimatedEventCost;
 	
 

@@ -9,7 +9,6 @@ public interface FloristBuilder {
 	FloristBuilder withTakeDownFee(final BigDecimal takeDownFee);
 	FloristBuilder withGeneralServiceFee(final BigDecimal generalServiceFee);
 	FloristBuilder withMinimumBudget(final Optional<BigDecimal> minimumBudget);
-
 }
 
 class Builder implements FloristBuilder{
