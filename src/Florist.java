@@ -39,21 +39,6 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		minimumBudget = Optional.empty();
 		floristMap = new HashMap<String, Florist>();
 	}
-	public LinkedList<Florist> floristOptions(HashMap<String, Florist> florists){
-		LinkedList<Florist> floristList = new LinkedList<Florist>();
-		BigDecimal estimatedCost = new BigDecimal("0.0");
-		Iterator<Map.Entry<String, Florist>> it = florists.entrySet().iterator();
-		
-		while(it.hasNext()) {
-			Map.Entry<String, Florist> florist = it.next();
-			Florist potentialFlorist = florist.getValue();
-			estimatedCost = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
-			int i = estimatedCost.compareTo(event.getBudgetAmount());
-			if( i == (-1))
-				floristList.add(potentialFlorist);
-		}
-		return floristList;		
-	}
 
 	public BigDecimal getDeliveryFee() {
 		return deliveryFee;
@@ -113,7 +98,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	
 	public HashMap<Florist, BigDecimal> floristOptions(){
 		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();
-		BigDecimal estimatedCost = new BigDecimal("0.0");
+		
 		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();
 		
 		while(it.hasNext()) {
@@ -121,7 +106,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 			Florist potentialFlorist = florist.getValue();
 			BigDecimal associatedFee = floristList.get(potentialFlorist);
 			associatedFee = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
-			int i = estimatedCost.compareTo(event.getBudgetAmount());
+			int i = associatedFee.compareTo(event.getBudgetAmount());
 			if( i == (-1))
 				floristList.put(potentialFlorist, associatedFee);
 		}
