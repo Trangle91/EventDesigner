@@ -98,7 +98,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	
 	public HashMap<Florist, BigDecimal> floristOptions(){
 		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();
-		
+	
 		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();
 		
 		while(it.hasNext()) {
