@@ -92,7 +92,6 @@ public class Client {
 	}
 	
 
-	
 	public ClientEvent getClientEventFromMap(LocalDate eventDate) { //used after saving an event to the map, can return null if not in map
 		ClientEventMapKey  key = new ClientEventMapKey(this, eventDate);
 		return clientEventMap.get(key);

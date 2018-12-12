@@ -3,9 +3,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+
+import java.util.Objects;
 import java.util.Optional;
 
+
 public class Florist { //still needs a method that returns florist(s) after input of budget from arrangement
+
 
 	private Client client;
 	private ClientEvent event;
@@ -16,6 +20,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
 	private HashMap<String, Florist> floristMap;
+
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
 		this.companyName = companyName;
@@ -108,5 +113,38 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		return floristReport;
 	}
 	
+	
+	public LinkedList<Florist> floristOptions(){
+		LinkedList<Florist> floristList = new LinkedList<Florist>();
+		BigDecimal estimatedCost = new BigDecimal("0.0");
+		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();
+		
+		while(it.hasNext()) {
+			Map.Entry<String, Florist> florist = it.next();
+			Florist potentialFlorist = florist.getValue();
+			estimatedCost = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
+			int i = estimatedCost.compareTo(event.getBudgetAmount());
+			if( i == (-1))
+				floristList.add(potentialFlorist);
+		}
+		return floristList;		
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == this)
+			return true;
+		if(!(o instanceof Florist))
+			return false;
+		Florist florist = (Florist) o;
+		return companyName == florist.companyName && Objects.equals(phoneNumber, florist.phoneNumber) &&
+				Objects.equals(minimumBudget, florist.minimumBudget);
+		
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(companyName, phoneNumber, minimumBudget);
+	}
 	
 }
