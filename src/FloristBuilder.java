@@ -25,6 +25,20 @@ class Builder implements FloristBuilder{
 		florist = new Florist(companyName,phoneNumber,deliveryFee,takeDownFee,generalServiceFee,minimumBudget);
 
 	}
+	
+	public Builder(){
+		Florist florist1 = new Florist("Tommy Rose", "612-551-1233", new BigDecimal("100"),new BigDecimal("30"),new BigDecimal("150"),
+				Optional.ofNullable(new BigDecimal("300")));
+		Florist florist2 = new Florist("Artemissa", "651-091-0847", new BigDecimal("70"),new BigDecimal("20"),new BigDecimal("130"),
+				Optional.ofNullable(new BigDecimal("230")));
+		Florist florist3 = new Florist("Lake Harriet Flowers", "713-234-0989", new BigDecimal("120"),new BigDecimal("50"),new BigDecimal("70"),
+				Optional.ofNullable(new BigDecimal("350")));
+		Florist florist4 = new Florist(" Bloom Flowers", "713-111-2222", new BigDecimal("100"),new BigDecimal("40"),new BigDecimal("200"),
+				Optional.ofNullable(new BigDecimal("400")));
+		Florist florist5 = new Florist("Rose Blossom", "713-4343-4343", new BigDecimal("150"),new BigDecimal("50"),new BigDecimal("250"),
+				Optional.ofNullable(new BigDecimal("500")));
+		
+	}
 
 	@Override
 	public Florist buildFlorist() {
