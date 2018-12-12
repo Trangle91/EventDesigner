@@ -3,9 +3,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
-public class Florist {
+public class Florist{
 
 	private Client client;
 	private ClientEvent event;
@@ -99,6 +100,23 @@ public class Florist {
 				floristList.add(potentialFlorist);
 		}
 		return floristList;		
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == this)
+			return true;
+		if(!(o instanceof Florist))
+			return false;
+		Florist florist = (Florist) o;
+		return companyName == florist.companyName && Objects.equals(phoneNumber, florist.phoneNumber) &&
+				Objects.equals(minimumBudget, florist.minimumBudget);
+		
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(companyName, phoneNumber, minimumBudget);
 	}
 	
 }
