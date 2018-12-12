@@ -15,9 +15,15 @@ public interface FloristBuilder {
 class Builder implements FloristBuilder{
 	public Florist florist;
 	
+
 	public Builder(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget){
 		florist = new Florist(companyName,phoneNumber,minimumBudget);
-		
+	}
+
+	public Builder(String companyName, String phoneNumber, BigDecimal deliveryFee, BigDecimal takeDownFee,
+			BigDecimal generalServiceFee, Optional<BigDecimal> minimumBudget){
+		florist = new Florist(companyName,phoneNumber,deliveryFee,takeDownFee,generalServiceFee,minimumBudget);
+
 	}
 
 	@Override
