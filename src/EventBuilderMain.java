@@ -132,7 +132,7 @@ public class EventBuilderMain {
 	} while (arrangementChoice != 0);
 	
 	report.printEventReport(currentclient, event);		
-	//report.printEventResults(currentclient, );
+	report.printEventResults(currentclient);
 
 	
 	}
