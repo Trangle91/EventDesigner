@@ -1,5 +1,8 @@
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Optional;
 
 public class Florist {
@@ -13,6 +16,7 @@ public class Florist {
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
 	private HashMap<String, Florist> floristMap;
+
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
 		this.companyName = companyName;
@@ -79,6 +83,22 @@ public class Florist {
 	public BigDecimal getTotalFee() {
 		return this.generalServiceFee.add(this.deliveryFee).add(this.takeDownFee);
 		
+	}
+	
+	public LinkedList<Florist> floristOptions(){
+		LinkedList<Florist> floristList = new LinkedList<Florist>();
+		BigDecimal estimatedCost = new BigDecimal("0.0");
+		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();
+		
+		while(it.hasNext()) {
+			Map.Entry<String, Florist> florist = it.next();
+			Florist potentialFlorist = florist.getValue();
+			estimatedCost = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
+			int i = estimatedCost.compareTo(event.getBudgetAmount());
+			if( i == (-1))
+				floristList.add(potentialFlorist);
+		}
+		return floristList;		
 	}
 	
 }
