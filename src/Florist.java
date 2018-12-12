@@ -19,7 +19,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	private BigDecimal takeDownFee;
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
-	private HashMap<String, Florist> floristMap;
+	private HashMap<String, Florist> floristMap = new HashMap<String, Florist>();;
 
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
@@ -37,7 +37,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		this.takeDownFee = takeDownFee;
 		this.generalServiceFee = generalServiceFee;
 		minimumBudget = Optional.empty();
-		floristMap = new HashMap<String, Florist>();
+		floristMap.put(companyName, this);
 	}
 
 	public BigDecimal getDeliveryFee() {
@@ -84,17 +84,6 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		return this.generalServiceFee.add(this.deliveryFee).add(this.takeDownFee);
 		
 	}
-	public String toString()
-	{
-		String floristReport = "";
-		floristReport += "\n*********************************";
-		floristReport += "\nCompany name: "+ companyName;
-		floristReport += "\nContact number: "+ phoneNumber;
-		floristReport += "\nMinimum budget required: "+ minimumBudget;
-		floristReport += "\nEstimated fee: "+ deliveryFee + takeDownFee + generalServiceFee;
-		return floristReport;
-	}
-	
 	
 	public HashMap<Florist, BigDecimal> floristOptions(){
 		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();
