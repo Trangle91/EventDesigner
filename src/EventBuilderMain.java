@@ -20,7 +20,7 @@ public class EventBuilderMain {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
-		
+		//final FloristBuilder floristBuilder = new Builder();
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -131,8 +131,9 @@ public class EventBuilderMain {
 		getResults(arrangementChoice);
 	} while (arrangementChoice != 0);
 	
-	report.printEventReport(currentclient, event);		
-	//report.printEventResults(currentclient);
+	report.printEventReport(currentclient, event);	
+	
+	//report.printEventResults(currentclient, floristBuilder.florist.FloristOptions();
 
 	
 	}

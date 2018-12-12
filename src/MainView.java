@@ -24,9 +24,5 @@ public class MainView {
 		System.out.println("Please select your arrangement type(s): One number in each line. Enter 0 when finished entering all arrangements.");
 	}
 	
-	public void printResults()
-	{
-		
-	}
 	
 }
