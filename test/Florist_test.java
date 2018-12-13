@@ -15,7 +15,7 @@ class Florist_test {
 			Optional.ofNullable(new BigDecimal("500")));
 	Florist Artemissa = new Florist("Artemissa", "651-091-0847", new BigDecimal("70"),new BigDecimal("20"),new BigDecimal("130"),
 			Optional.ofNullable(new BigDecimal("230")));
-		
+
 	
 	String	expectedCompanyName  = "Flowers";
 	String	expectedPhoneNumber = "123-456-7890";
