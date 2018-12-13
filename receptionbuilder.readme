@@ -1,0 +1,44 @@
+SEIS 635 Final Project Readme
+
+Included:
+All source code
+All tests
+A Word document with the final report
+Presentation Slides
+
+Overview
+ReceptionBuilder seeks to connect clients to decor choices that match their personal style and budget to a florist that can provide the client's unique vision to their event.
+Florists who use ReceptionBuilder agree to provide the decor choices for the listed prices, though the florists are allowed to set fees and minimum budgets they will work with. 
+ReceptionBuilder also calculates the number of each type of client selected design required based on the table count of the event and gives the client an estimated total for the event for different florists.
+
+Code Style
+standard
+
+Features
+ReceptionBuilder displays the images of the potential designs, saves the client's event, saves the client information, displays florists that are within a client's budget, and calculates the total estimated cost of the event.
+
+How to Run
+ReceptionBuilder currently runs from the console with windows popping up to display the types of arrangements. 
+Client Template
+Name: Jane Doe
+Partner Name: John
+Phone Number: 555-555-5555
+
+Event Template
+Event Date: 05-05-2019
+Budget: 3,000
+Table Count: 35
+Guest Count: 350
+Event Theme: Easy Elegance
+Color Palette: White and Gold
+
+Tests
+There is a branch in the repository labeled as TestBranch. This branch has all of the appropriate modifiers needed to run the tests. 
+The project attempted to use TDD in the ClientEvent, Client, and the Enum Arrangement classes. 
+
+
+
+
+
+
+
