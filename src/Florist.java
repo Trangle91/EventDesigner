@@ -19,13 +19,14 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	private BigDecimal takeDownFee;
 	private BigDecimal generalServiceFee;
 	private Optional<BigDecimal> minimumBudget;
-	private HashMap<String, Florist> floristMap = new HashMap<String, Florist>();;
+	private HashMap<String, Florist> floristMap = new HashMap<String, Florist>();
 
 	
 	public Florist(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget) {
 		this.companyName = companyName;
 		this.phoneNumber = phoneNumber;
 		minimumBudget = Optional.empty();
+		this.floristMap.put(companyName, this);
 	}
 	
 	public Florist(String companyName, String phoneNumber, BigDecimal deliveryFee, BigDecimal takeDownFee,
@@ -37,7 +38,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		this.takeDownFee = takeDownFee;
 		this.generalServiceFee = generalServiceFee;
 		minimumBudget = Optional.empty();
-		floristMap.put(companyName, this);
+		this.floristMap.put(companyName, this);
 	}
 
 	public BigDecimal getDeliveryFee() {
@@ -86,22 +87,27 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	}
 	
 	public HashMap<Florist, BigDecimal> floristOptions(){
-		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();
-	
-		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();
+		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();	
+		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();	
 		
 		while(it.hasNext()) {
 			Map.Entry<String, Florist> florist = it.next();
 			Florist potentialFlorist = florist.getValue();
-			BigDecimal associatedFee = floristList.get(potentialFlorist);
-			associatedFee = event.getEstimatedEventCost().add(potentialFlorist.getTotalFee());
-			int i = associatedFee.compareTo(event.getBudgetAmount());
-			if( i == (-1))
-				floristList.put(potentialFlorist, associatedFee);
+			boolean withinBudget = compareCostToBudget(event.getEstimatedEventCost().add(potentialFlorist.getTotalFee()),
+					event.getBudgetAmount());
+			if(withinBudget == true)
+				floristList.put(potentialFlorist, floristList.get(potentialFlorist));
 		}
 		return floristList;		
 	}
 	
+	//changed to protected for testing
+	protected boolean compareCostToBudget(BigDecimal estimatedCost, BigDecimal budget) {
+		int i = estimatedCost.compareTo(budget);
+		return i == -1;
+	}
+	
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == this)

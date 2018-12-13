@@ -89,7 +89,8 @@ public class ClientEvent {
 		return estimatedEventCost;
 	}
 	
-	private void setEstimatedEventCost(BigDecimal estimatedEventCost) {
+	//changed to protected for testing
+	protected void setEstimatedEventCost(BigDecimal estimatedEventCost) {
 		this.estimatedEventCost = estimatedEventCost;
 	}
 
