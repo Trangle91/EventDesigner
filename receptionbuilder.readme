@@ -36,6 +36,11 @@ Tests
 There is a branch in the repository labeled as TestBranch. This branch has all of the appropriate modifiers needed to run the tests. 
 The project attempted to use TDD in the ClientEvent, Client, and the Enum Arrangement classes. 
 
+Contributions
+Sarah created the Client, ClientEvent, and the Arrangement Enums. Trang worked on the Florist and Florist related classes. Russel worked on the Mainview and Reports. 
+
+Special Thanks
+Mary Eccher of Designs by Mary Eccher - a 3912 Corporation for the use of the images and her event planing and design expertise.
 
 
 
