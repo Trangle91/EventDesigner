@@ -76,7 +76,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	public String getFloristName() {
 		return this.companyName;
 	}
-	
+
 	public String getFloristContactNumber() {
 		return phoneNumber;
 	}
