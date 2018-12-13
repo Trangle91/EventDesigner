@@ -70,23 +70,20 @@ public void printEventResults(Client client, Florist florist)
 	
 	
 }
-@Override
-public void printFloristReport(Florist florist, Client client) {
-	Iterator iterator = florist.floristOptions(client.event).entrySet().iterator();
-	Map.Entry currentmap = null;
-	while (iterator.hasNext()) {
-		 currentmap = (Map.Entry) iterator.next();
-		florist = (Florist) currentmap.getKey();
-	
+
+public void printFloristReport(ClientEvent event) {
+	event.getPotentialFlorists().forEach((key, value) -> {
 		String floristReport = "";
 		floristReport += "\n*********************************";
-		floristReport += "\nCompany name: "+ florist.getFloristName();
-		floristReport += "\nContact number: "+ florist.getFloristContactNumber();
-		floristReport += "\nMinimum budget required: "+ florist.getMinimumBudget();
-		floristReport += "\nEstimated fee: " + NumberFormat.getCurrencyInstance().format(florist.getTotalFee()) + "\n";
-		floristReport +="\nTotal Estimated Event Cost: " + NumberFormat.getCurrencyInstance().format(client.event.getEstimatedEventCost().add(florist.getTotalFee()));
+		floristReport += "\nCompany name: "+ key.getFloristName();
+		floristReport += "\nContact number: "+ key.getFloristContactNumber();
+		floristReport += "\nMinimum budget required: "+ key.getMinimumBudget();
+		floristReport += "\nEstimated fee: " + NumberFormat.getCurrencyInstance().format(key.getTotalFee()) + "\n";
+		floristReport +="\nTotal Estimated Event Cost: " + NumberFormat.getCurrencyInstance().format(event.getEstimatedEventCost().add(key.getTotalFee()));
 		System.out.println(floristReport);
 	}
+	);
+	
 }
 
 }

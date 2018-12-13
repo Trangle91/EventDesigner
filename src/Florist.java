@@ -86,15 +86,16 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		
 	}
 	
-	public HashMap<Florist, BigDecimal> floristOptions(ClientEvent event){
-		HashMap<Florist, BigDecimal> floristsWithInBudgetMap = new HashMap<Florist,BigDecimal>(); 
+	public void  floristOptions(ClientEvent event){
+		
 		floristMap.forEach((key, value) -> {
 		BigDecimal estimatedEventCost = value.getTotalFee().add(event.getEstimatedEventCost());
 		if (estimatedEventCost.compareTo(event.getBudgetAmount())<= 0) {
-		floristsWithInBudgetMap.put(value, estimatedEventCost);
+		event.getPotentialFlorists().put(value, estimatedEventCost);
 		}
 		});
-		return floristsWithInBudgetMap;
+		
+		
 		}
 	
 	//changed to protected for testing
