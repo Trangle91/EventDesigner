@@ -73,19 +73,20 @@ public void printEventResults(Client client, Florist florist)
 @Override
 public void printFloristReport(Florist florist, Client client) {
 	Iterator iterator = florist.floristOptions(client.event).entrySet().iterator();
-	Map.Entry me2 = null;
+	Map.Entry currentmap = null;
 	while (iterator.hasNext()) {
-		 me2 = (Map.Entry) iterator.next();
-		florist = (Florist) me2.getKey();
-	}
+		 currentmap = (Map.Entry) iterator.next();
+		florist = (Florist) currentmap.getKey();
+	
 		String floristReport = "";
 		floristReport += "\n*********************************";
 		floristReport += "\nCompany name: "+ florist.getFloristName();
 		floristReport += "\nContact number: "+ florist.getFloristContactNumber();
 		floristReport += "\nMinimum budget required: "+ florist.getMinimumBudget();
-		floristReport += "\nEstimated fee: " + florist.getTotalFee();
-		floristReport +="\nTotal Event Cost: " + NumberFormat.getCurrencyInstance().format(client.event.getEstimatedEventCost().add(florist.getTotalFee()));
+		floristReport += "\nEstimated fee: " + NumberFormat.getCurrencyInstance().format(florist.getTotalFee()) + "\n";
+		floristReport +="\nTotal Estimated Event Cost: " + NumberFormat.getCurrencyInstance().format(client.event.getEstimatedEventCost().add(florist.getTotalFee()));
 		System.out.println(floristReport);
+	}
 }
 
 }

@@ -13,6 +13,7 @@ public interface FloristBuilder {
 
 class Builder implements FloristBuilder{
 	public Florist florist;
+	public Florist florist4;
 	public Florist florist5;
 
 	public Builder(String companyName, String phoneNumber,Optional<BigDecimal> minimumBudget){
@@ -32,7 +33,7 @@ class Builder implements FloristBuilder{
 				Optional.ofNullable(new BigDecimal("230")));
 		Florist florist3 = new Florist("Lake Harriet Flowers", "713-234-0989", new BigDecimal("120"),new BigDecimal("50"),new BigDecimal("70"),
 				Optional.ofNullable(new BigDecimal("350")));
-		Florist florist4 = new Florist(" Bloom Flowers", "713-111-2222", new BigDecimal("100"),new BigDecimal("40"),new BigDecimal("200"),
+		florist4 = new Florist(" Bloom Flowers", "713-111-2222", new BigDecimal("100"),new BigDecimal("40"),new BigDecimal("200"),
 				Optional.ofNullable(new BigDecimal("400")));
 		 florist5 = new Florist("Rose Blossom", "713-433-4343", new BigDecimal("150"),new BigDecimal("50"),new BigDecimal("250"),
 				Optional.ofNullable(new BigDecimal("500")));

@@ -26,7 +26,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		this.companyName = companyName;
 		this.phoneNumber = phoneNumber;
 		minimumBudget = Optional.empty();
-		this.floristMap.put(companyName, this);
+		floristMap.put(companyName, this);
 	}
 	
 	public Florist(String companyName, String phoneNumber, BigDecimal deliveryFee, BigDecimal takeDownFee,
@@ -38,7 +38,7 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		this.takeDownFee = takeDownFee;
 		this.generalServiceFee = generalServiceFee;
 		minimumBudget = Optional.empty();
-		this.floristMap.put(companyName, this);
+		floristMap.put(companyName, this);
 	}
 
 	public BigDecimal getDeliveryFee() {
@@ -87,19 +87,15 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 	}
 	
 	public HashMap<Florist, BigDecimal> floristOptions(ClientEvent event){
-		HashMap<Florist, BigDecimal> floristList = new HashMap<Florist,BigDecimal>();	
-		Iterator<Map.Entry<String, Florist>> it = floristMap.entrySet().iterator();	
-		
-		while(it.hasNext()) {
-			Map.Entry<String, Florist> florist = it.next();
-			Florist potentialFlorist = florist.getValue();
-			boolean withinBudget = compareCostToBudget(event.getEstimatedEventCost().add(potentialFlorist.getTotalFee()),
-					event.getBudgetAmount());
-			if(withinBudget == true)
-				floristList.put(potentialFlorist, floristList.get(potentialFlorist));
+		HashMap<Florist, BigDecimal> floristsWithInBudgetMap = new HashMap<Florist,BigDecimal>(); 
+		floristMap.forEach((key, value) -> {
+		BigDecimal estimatedEventCost = value.getTotalFee().add(event.getEstimatedEventCost());
+		if (estimatedEventCost.compareTo(event.getBudgetAmount())<= 0) {
+		floristsWithInBudgetMap.put(value, estimatedEventCost);
 		}
-		return floristList;		
-	}
+		});
+		return floristsWithInBudgetMap;
+		}
 	
 	//changed to protected for testing
 	protected boolean compareCostToBudget(BigDecimal estimatedCost, BigDecimal budget) {

@@ -122,7 +122,7 @@ class Florist_test {
 		expectedFloristList.put(florist, florist.getTotalFee());
 		expectedFloristList.put(Artemissa, Artemissa.getTotalFee());
 		
-		actualFloristList = florist.floristOptions();
+		actualFloristList = florist.floristOptions(event);
 		
 		assertEquals(expectedFloristList,actualFloristList);
 		
