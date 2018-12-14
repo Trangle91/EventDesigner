@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 public class EventBuilderMain {
 	static Client currentclient;
 	public static void main(String[] args) throws IOException {
@@ -21,6 +22,7 @@ public class EventBuilderMain {
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
 		final FloristBuilder floristBuilder = new Builder();
+		
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -133,7 +135,7 @@ public class EventBuilderMain {
 	
 	report.printEventReport(currentclient, event);	
 	report.printEventResults(currentclient, floristBuilder.getFlorist());
-	report.printFloristReport(floristBuilder.getFlorist(), currentclient);
+	report.printFloristReport(event);
 	
 	}
 	

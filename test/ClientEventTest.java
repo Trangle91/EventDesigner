@@ -15,11 +15,26 @@ class ClientEventTest {
 	
 	public Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
 	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
-	public BigDecimal expectedBudgetAmount = new BigDecimal("3000.00");
+	public BigDecimal expectedBudgetAmount = new BigDecimal("12000.00");
 	public Optional<Integer> expectedGuestCount = Optional.empty();
 	public int expectedTableCount = 35;
 	public Optional<String> expectedEventTheme = Optional.empty();
 	public Optional<String> expectedColorPalette = Optional.empty();
+	
+
+	Florist	florist = new Florist("Flowers", "123-456-7890",new BigDecimal("50.00"), new BigDecimal("20.00"),new BigDecimal("200.00"),
+			Optional.of(new BigDecimal("500.00")));
+	
+	 Florist tommyRose = new Florist("Tommy Rose", "612-551-1233", new BigDecimal("100.00"), new BigDecimal("30.00"), 
+			new BigDecimal("150.00"), Optional.of(new BigDecimal("300.00")));
+	 Florist artemissa = new Florist("Artemissa", "651-091-0847", new BigDecimal("70.00"), 
+			new BigDecimal("20.00"), new BigDecimal("130.00"), Optional.ofNullable(new BigDecimal("400.00")));
+	 Florist bloomFlowers = new Florist("Bloom Flowers", "713-111-2222", new BigDecimal("100.00"), 
+			new BigDecimal("40.00"), new BigDecimal("200.00"), Optional.ofNullable(new BigDecimal("350.00")));
+	 Florist lakeHarrietFlowers = new Florist("Lake Harriet Flowers", "713-234-0989", new BigDecimal("120.00"), 
+			new BigDecimal("50.00"), new BigDecimal("170.00"), Optional.ofNullable(new BigDecimal("350.00")));
+  Florist roseBlossom = new Florist("Rose Blossom", "713-4343-4343", new BigDecimal("150.00"), 
+			new BigDecimal("50.00"), new BigDecimal("250.00"), Optional.ofNullable(new BigDecimal("500.00")));
 	
 	ClientEvent event = c.createEvent(expectedEventDate, expectedBudgetAmount, expectedGuestCount, 
 									expectedTableCount, expectedEventTheme, expectedColorPalette);
@@ -263,6 +278,21 @@ public void testCalculateEstimatedCostArrangements() {
 	BigDecimal actual =event.getEstimatedEventCost();
 		
 	assertEquals(expected, actual);
+}
+
+@Test
+public void testFindFlorists() {
+	event.findFlorists(florist);
+	assertTrue(event.getFloristsWithInBudget().containsKey(tommyRose));
+	assertTrue(event.getFloristsWithInBudget().containsKey(artemissa));
+	assertTrue(event.getFloristsWithInBudget().containsKey(roseBlossom));
+	assertTrue(event.getFloristsWithInBudget().containsKey(lakeHarrietFlowers));
+	assertTrue(event.getFloristsWithInBudget().containsKey(bloomFlowers));
+}
+
+@Test
+public void testFindFlorists1() {
+	event.findFlorists(florist);	
 }
 
 //@Test

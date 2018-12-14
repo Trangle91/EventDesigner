@@ -8,7 +8,7 @@ public interface EventReport {
 public String printClientReport(Client client);
 void printEventResults(Client client, Florist florsit);
 void printEventReport(Client Client, ClientEvent event);
-void printFloristReport(Florist florist, Client client);
+void printFloristReport(ClientEvent event);
 }
 class Reports implements EventReport{
 	
@@ -71,8 +71,9 @@ public void printEventResults(Client client, Florist florist)
 	
 }
 
+@Override
 public void printFloristReport(ClientEvent event) {
-	event.getPotentialFlorists().forEach((key, value) -> {
+	event.getFloristsWithInBudget().forEach((key, value) -> {
 		String floristReport = "";
 		floristReport += "\n*********************************";
 		floristReport += "\nCompany name: "+ key.getFloristName();
@@ -85,5 +86,6 @@ public void printFloristReport(ClientEvent event) {
 	);
 	
 }
+
 
 }

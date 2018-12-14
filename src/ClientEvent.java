@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +30,12 @@ public class ClientEvent {
 	private int numTallAnchorArrangements = 0;
 
 	private BigDecimal estimatedEventCost;
-	
-	private HashMap<Florist, BigDecimal> potentialFloristMap;
+	private HashMap<Florist, BigDecimal> floristsWithInBudgetMap = new HashMap<Florist, BigDecimal>();
 	
 
 	public ClientEvent() {
 		estimatedEventCost = new BigDecimal("0.00");
-		HashMap<Florist, BigDecimal> potentialFloristMap= new HashMap<Florist, BigDecimal>();
+		
 	}
 
 
@@ -96,9 +97,11 @@ public class ClientEvent {
 		this.estimatedEventCost = estimatedEventCost;
 	}
 	
-	public HashMap<Florist, BigDecimal> getPotentialFlorists() {
-		return potentialFloristMap;
+	public HashMap<Florist, BigDecimal> getFloristsWithInBudget() {
+		return floristsWithInBudgetMap;
 	}
+	
+
 
 
 	public HashMap<Object, Integer> designEvent(Object...arrangements) { //
@@ -209,6 +212,16 @@ public class ClientEvent {
 		}
 		
 		return individualCost;
+	}
+	
+	public void findFlorists(Florist florist) {
+		florist.getPotentialFloristMap().forEach((key, value) -> {
+			BigDecimal estimatedEventCost = value.getTotalFee().add(this.getEstimatedEventCost());
+			
+			if (estimatedEventCost.compareTo(this.getBudgetAmount()) <= 0) {
+			floristsWithInBudgetMap.put(value, estimatedEventCost); }
+			
+		});
 	}
 	
 	@Override

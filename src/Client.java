@@ -21,7 +21,7 @@ public class Client {
 
 	public ClientEventBuilder builder;
 	
-	private HashMap<String, Client> clientMap = new HashMap<String, Client>();
+	private static  HashMap<String, Client> clientMap = new HashMap<String, Client>();
 	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
 	
 	
