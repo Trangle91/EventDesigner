@@ -86,11 +86,15 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		
 	}
 	
+	public HashMap<String, Florist> getParticipatingFlorists() {
+		return this.floristMap;
+	}
+	
 	public void  floristOptions(ClientEvent event){
 		
 		floristMap.forEach((key, value) -> {
 		BigDecimal estimatedEventCost = value.getTotalFee().add(event.getEstimatedEventCost());
-		if (estimatedEventCost.compareTo(event.getBudgetAmount())<= 0) {
+		if (estimatedEventCost.compareTo(event.getBudgetAmount()) <= 0) {
 		event.getPotentialFlorists().put(value, estimatedEventCost);
 		}
 		});

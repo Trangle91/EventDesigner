@@ -29,12 +29,12 @@ public class ClientEvent {
 
 	private BigDecimal estimatedEventCost;
 	
-	private HashMap<Florist, BigDecimal> potentialFloristMap;
+	private HashMap<Florist, BigDecimal> potentialFloristMap = new HashMap<Florist, BigDecimal>();
 	
 
 	public ClientEvent() {
 		estimatedEventCost = new BigDecimal("0.00");
-		HashMap<Florist, BigDecimal> potentialFloristMap= new HashMap<Florist, BigDecimal>();
+	
 	}
 
 

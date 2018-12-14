@@ -56,7 +56,7 @@ public void printEventReport(Client Client, ClientEvent event) {
 
 
 @Override
-public void printEventResults(Client client, Florist florist)
+public void printEventResults(Client client, Florist florist) //consider dropping the florist from these parameters
 {
 	
 	String eventResult = "Based on your selected parameters these results were generated: \n";

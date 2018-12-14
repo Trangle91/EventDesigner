@@ -15,12 +15,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 public class EventBuilderMain {
+	Florist florist1 = new Florist("Tommy Rose", "612-551-1233", new BigDecimal("100.00"), new BigDecimal("30.00"), new BigDecimal("150.00"),
+			Optional.of(new BigDecimal("300.00")));
+	Florist florist2 = new Florist("Artemissa", "651-091-0847", new BigDecimal("70.00"), 
+				new BigDecimal("20.00"), new BigDecimal("130.00"), Optional.of(new BigDecimal("120.00")));
+	Florist florist3 = new Florist("Lake Harriet Flowers", "713-234-0989", new BigDecimal("70.00"), 
+			new BigDecimal("50.00"), new BigDecimal("170.00"), Optional.of(new BigDecimal("350.00")));
+	Florist florist4 = new Florist("Bloom Flowers", "713-111-2222", new BigDecimal("100.00"), 
+			new BigDecimal("40.00"), new BigDecimal("200.00"), Optional.of(new BigDecimal("400.00")));
+	Florist florist5 = new Florist("Rose Blossom", "713-4343-4343", new BigDecimal("150.00"), 
+			new BigDecimal("50.00"), new BigDecimal("250.00"), Optional.of(new BigDecimal("500.00")));
+	
+	
 	static Client currentclient;
 	public static void main(String[] args) throws IOException {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
 		final FloristBuilder floristBuilder = new Builder();
+		
 		
 		
 		Scanner scan = new Scanner(System.in);

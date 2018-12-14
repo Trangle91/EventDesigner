@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -19,13 +20,26 @@ class Florist_test {
 	
 	String	expectedCompanyName  = "Flowers";
 	String	expectedPhoneNumber = "123-456-7890";
-	BigDecimal	expectedDeliveryFee = new BigDecimal("50.00");
-	BigDecimal	expectedTakeDownFee = new BigDecimal("20.00");
-	BigDecimal	expectedGeneralServicesFee= new BigDecimal("200.00");
+	BigDecimal	expectedDeliveryFee = new BigDecimal("10.00");
+	BigDecimal	expectedTakeDownFee = new BigDecimal("10.00");
+	BigDecimal	expectedGeneralServicesFee= new BigDecimal("10.00");
 	Optional<BigDecimal> expectedMinimumBudget = Optional.empty();
-	BigDecimal	expectedTotalFee = new BigDecimal("270.00");
-	ClientEvent event = new ClientEvent();
-	HashMap<String, Florist> floristMap = new HashMap<String,Florist>();
+	BigDecimal	expectedTotalFee = new BigDecimal("30.00");
+
+	
+final ClientEventBuilder builder = new BuilderImpl();
+	
+	public Client c = new Client("Jane", "Doe", Optional.of("John"), "555-555-5555", builder);
+	public LocalDate expectedEventDate = LocalDate.of(2018, 12, 25);
+	public BigDecimal expectedBudgetAmount = new BigDecimal("3000.00");
+	public Optional<Integer> expectedGuestCount = Optional.empty();
+	public int expectedTableCount = 35;
+	public Optional<String> expectedEventTheme = Optional.empty();
+	public Optional<String> expectedColorPalette = Optional.empty();
+	
+	ClientEvent event = c.createEvent(expectedEventDate, expectedBudgetAmount, expectedGuestCount, 
+									expectedTableCount, expectedEventTheme, expectedColorPalette);
+	
 	
 	@Test
 	public void testCreateFloristWithAllFields() {
@@ -41,17 +55,35 @@ class Florist_test {
 		assertNotNull(florist);
 	}
 	
-	
 	@Test
 	public void testFloristMap() {
-		HashMap<String, Florist> expectedFloristMap = new HashMap<String,Florist>();
-		expectedFloristMap.put("florist",florist);
-		expectedFloristMap.put("Rose Blossom",Rose);
-		expectedFloristMap.put("Artemissa",Artemissa);
-		
-		assertEquals(expectedFloristMap,this.floristMap);
-		
+	Florist	florist = new Florist("Flowers", "123-456-7890",new BigDecimal("50.00"), new BigDecimal("20.00"),new BigDecimal("200.00"),
+			Optional.of(new BigDecimal("500.00")));
+	
+	Florist expected = florist;
+	Florist actual = florist.getParticipatingFlorists().get(expectedCompanyName);
+	assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testFloristOptions() {
+		florist.floristOptions(event);
+		boolean actual = true;
+		boolean expected = event.getPotentialFlorists().containsKey(florist);
+		assertEquals(expected, actual);
+	}
+	
+	
+//	@Test
+//	public void testFloristMap() {
+//		HashMap<String, Florist> expectedFloristMap = new HashMap<String,Florist>();
+//		expectedFloristMap.put("florist",florist);
+//		expectedFloristMap.put("Rose Blossom",Rose);
+//		expectedFloristMap.put("Artemissa",Artemissa);
+//		
+//		assertEquals(expectedFloristMap,this.floristMap);
+//		
+//	}
 	@Test
 	public void testGetFloristCompanyName() {
 		String actual = florist.getFloristName();
@@ -111,20 +143,17 @@ class Florist_test {
 	
 	@Test
 	public void testfloristOptions() {
-		HashMap<Florist, BigDecimal> actualFloristList = new HashMap<Florist,BigDecimal>();
+		
 		HashMap<Florist, BigDecimal> expectedFloristList = new HashMap<Florist,BigDecimal>();
-		BigDecimal estimatedEventCost = new BigDecimal("2560.00");
-		BigDecimal budgetAmount = new BigDecimal("3000.00");
-		event.setBudgetAmount(budgetAmount);
-		event.setEstimatedEventCost(estimatedEventCost);
+	
 		
 		//Rose exceeded the budget, so only florist and Artemissa were added to the list.
 		expectedFloristList.put(florist, florist.getTotalFee());
 		expectedFloristList.put(Artemissa, Artemissa.getTotalFee());
 		
-		actualFloristList = florist.floristOptions(event);
+		 florist.floristOptions(event);
 		
-		assertEquals(expectedFloristList,actualFloristList);
+		assertEquals(expectedFloristList, event.getPotentialFlorists());
 		
 	} 
 	
@@ -135,6 +164,11 @@ class Florist_test {
 		boolean expected = florist.compareCostToBudget(estimatedEventCost.add(florist.getTotalFee()), budgetAmount);
 		assertTrue(expected);
 		
+	}
+	
+	@Test
+	public void testFloristReport() {
+		Rose.floristOptions(event);
 	}
 
 }
