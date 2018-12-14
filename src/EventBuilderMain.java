@@ -17,11 +17,13 @@ import javax.swing.JLabel;
 
 public class EventBuilderMain {
 	static Client currentclient;
+	static Florist florist = new Florist();
 	public static void main(String[] args) throws IOException {
 		final EventReport report = new Reports();
 		MainView view = new MainView();
 		final ClientEventBuilder builder = new BuilderImpl();
 		final FloristBuilder floristBuilder = new Builder();
+		
 		
 		
 		
@@ -152,7 +154,7 @@ public class EventBuilderMain {
 		case 4: arrange = LowFloralArrangement.Instance;
 		break;
 		case 5: arrange = SmallFloralRingArrangement.Instance;
-		currentclient.event.designEvent(arrange);
+		currentclient.event.designEvent(florist, arrange);
 	}		
 				
 				

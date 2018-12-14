@@ -252,7 +252,7 @@ class ClientEventTest {
 @Test
 public void testDesignEvent() {
 	
-	HashMap<Object, Integer> actual = event.designEvent(VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(), 
+	HashMap<Object, Integer> actual = event.designEvent(florist, VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(), 
 						LargeFloralRingArrangement.getLargeFloralRingArrangement(), 
 						TallAnchorArrangement.getTallAnchorArrangement());
 	

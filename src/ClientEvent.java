@@ -104,7 +104,7 @@ public class ClientEvent {
 
 
 
-	public HashMap<Object, Integer> designEvent(Object...arrangements) { //
+	public HashMap<Object, Integer> designEvent(Florist florist, Object...arrangements) { //
 		int totalNumArrangements = arrangements.length;
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
@@ -117,6 +117,7 @@ public class ClientEvent {
 		placeArrangements(this.getTableCount(), totalNumArrangements, determinedArrangements);				
 		placeRemainingArrangements(this.getTableCount(), determinedArrangements);
 		calculateEstimatedCostArrangements(determinedArrangements);
+		findFlorists(florist);
 		
 		
 		return determinedArrangements;
