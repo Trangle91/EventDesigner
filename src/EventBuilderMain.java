@@ -86,7 +86,7 @@ public class EventBuilderMain {
 		
 		
 		System.out.println("Please choose Arrangements from the list below.");
-		System.out.println(LargeFloralRingArrangement.Instance.ArrangementReport());
+		System.out.println(LargeFloralRing.Instance.ArrangementReport());
 		JFrame frame = new JFrame("Large FLoral Ring Arrangement(1)");
 		ImageIcon lfra = new ImageIcon("images/LargeFloralHeavyRing.jpg");
 		
@@ -111,14 +111,14 @@ public class EventBuilderMain {
 		frame2.setSize(taa.getIconWidth(), taa.getIconHeight());
 		frame2.add(label2);
 		frame2.setVisible(true);
-		System.out.println(LowFloralArrangement.Instance.ArrangementReport());
+		System.out.println(LowFloral.Instance.ArrangementReport());
 		JFrame frame3 = new JFrame("Low Floral Arrangement (2)");
 		ImageIcon lfa= new ImageIcon("images/LowFloralHeavyArrangement.jpg");
 		JLabel label3 = new JLabel(lfa);
 		frame3.setSize(lfa.getIconWidth(), lfa.getIconHeight());
 		frame3.add(label3);
 		frame3.setVisible(true);
-		System.out.println(SmallFloralRingArrangement.Instance.ArrangementReport());
+		System.out.println(SmallFloralRing.Instance.ArrangementReport());
 		JFrame frame4 = new JFrame("Samll Floral Ring Arrangement (3)");
 		ImageIcon sfra= new ImageIcon("images/SmallFloralRing.jpg");
 		JLabel label4 = new JLabel(sfra);
@@ -145,15 +145,15 @@ public class EventBuilderMain {
 	{
 		Object arrange = null;
 		switch (choice) {
-		case 1: arrange = LargeFloralRingArrangement.Instance;
+		case 1: arrange = LargeFloralRing.Instance;
 		break;
 		case 2: arrange = VotiveArrangement.Instance;
 		break;
 		case 3: arrange = TallAnchorArrangement.Instance; //cannot select just tall arrangement
 		break;
-		case 4: arrange = LowFloralArrangement.Instance;
+		case 4: arrange = LowFloral.Instance;
 		break;
-		case 5: arrange = SmallFloralRingArrangement.Instance;
+		case 5: arrange = SmallFloralRing.Instance;
 		currentclient.event.designEvent(florist, arrange);
 	}		
 				

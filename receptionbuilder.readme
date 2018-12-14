@@ -27,7 +27,7 @@ There are some instances where this worked well and some where they did not. An 
 the method floristOptions. 
 I'm not a big fan of having to create a dummy florist controller in the main method in order to be able to use that method. 
 An area where I think it works well is Client and ClientEvent. The two classes aren't coupled at all. They are only connected by a HashMap with a unique key.
-Enum Singletons from Effectie Java by Joshua Bloch. Our arrangements are consistent across all of the florists, clients and events. 
+Enum Singletons from Effective Java by Joshua Bloch. Our arrangements are consistent across all of the florists, clients and events. 
 An Alternative way to do this might have been to create an Arrangement class with subtypes of each arrangement and create a constant 
 reference. 
 

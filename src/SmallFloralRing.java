@@ -1,16 +1,17 @@
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 
-//visibility for testing
-public enum LowFloralArrangement {
+public enum SmallFloralRing {
 Instance;
-	public int arrangementNum = 2;
-	public String arrangementName = "low floral heavy piece";
-	public String arrangementDescription = "a low centerpiece in a take home container featuring an impressive number of flowers accompanied by 3 mixed votives";
-	public  BigDecimal arrangementPrice = new BigDecimal("60.00");
+	public int arrangementNum = 3;
+	public String arrangementName = "small floral ring";
+	public String arrangementDescription = "a small ring in a take home container filled with exquisite flowers. "
+			+ "Centered in the ring is a hurricane vase with a pillar candle inside. "
+			+ "The piece is accompanied by 3 votive candles.";
+	public  BigDecimal arrangementPrice = new BigDecimal("55.00");
 	public  int numOfVotivesIncluded = 3;
 	
-	public static LowFloralArrangement getLowFloralArrangement() {
+	public static SmallFloralRing getSmallFloralRingArrangement() {
 		return Instance;
 	}
 	
@@ -37,8 +38,7 @@ Instance;
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
 		
 		report += "\nPrice: " + fmt.format(arrangementPrice);
-		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************\n";
-				
+		return report += "\n# of Votives Included: " + numOfVotivesIncluded;
 	
 	}
 }

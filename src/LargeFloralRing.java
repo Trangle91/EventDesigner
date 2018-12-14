@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 
-public enum LargeFloralRingArrangement {
+public enum LargeFloralRing {
 Instance;
 	public int arrangementNum = 1; //added to help user select from console ui
 	public String arrangementName = "large floral ring";
@@ -11,7 +11,7 @@ Instance;
 	public  BigDecimal arrangementPrice = new BigDecimal("75.00");
 	public  int numOfVotivesIncluded = 3;
 	
-	public static LargeFloralRingArrangement getLargeFloralRingArrangement() {
+	public static LargeFloralRing getLargeFloralRingArrangement() {
 		return Instance;
 	}
 	

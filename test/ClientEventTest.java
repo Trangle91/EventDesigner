@@ -127,11 +127,11 @@ class ClientEventTest {
 	public void testPlaceArrangements1() { //two types of arrangements, no talls
 		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
 		expected.put(VotiveArrangement.getVotiveArrangement(), 17);
-		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 17);
+		expected.put(SmallFloralRing.getSmallFloralRingArrangement(), 17);
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
 		
 		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
 				determinedArrangements.size(), determinedArrangements);
@@ -143,13 +143,13 @@ class ClientEventTest {
 	public void testPlaceArrangements2() { //three types of arrangements, no talls
 		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
 		expected.put(VotiveArrangement.getVotiveArrangement(), 11);
-		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 11);
-		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 11);
+		expected.put(SmallFloralRing.getSmallFloralRingArrangement(), 11);
+		expected.put(LargeFloralRing.getLargeFloralRingArrangement(), 11);
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
-		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 0);
 		
 		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
 				determinedArrangements.size(), determinedArrangements);
@@ -161,15 +161,15 @@ class ClientEventTest {
 	public void testPlaceArrangements3() { //four types of arrangements, no talls
 		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
 		expected.put(VotiveArrangement.getVotiveArrangement(), 8);
-		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 8);
-		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
-		expected.put(LowFloralArrangement.getLowFloralArrangement(), 8);
+		expected.put(SmallFloralRing.getSmallFloralRingArrangement(), 8);
+		expected.put(LargeFloralRing.getLargeFloralRingArrangement(), 8);
+		expected.put(LowFloral.getLowFloralArrangement(), 8);
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
-		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
-		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloral.getLowFloralArrangement(), 0);
 		
 		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
 				determinedArrangements.size(), determinedArrangements);
@@ -181,16 +181,16 @@ class ClientEventTest {
 	public void testPlaceArrangements4() { //all types
 		HashMap<Object, Integer> expected = new HashMap<Object, Integer>();
 		expected.put(VotiveArrangement.getVotiveArrangement(), 6);
-		expected.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 6);
-		expected.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 6);
-		expected.put(LowFloralArrangement.getLowFloralArrangement(), 6);
+		expected.put(SmallFloralRing.getSmallFloralRingArrangement(), 6);
+		expected.put(LargeFloralRing.getLargeFloralRingArrangement(), 6);
+		expected.put(LowFloral.getLowFloralArrangement(), 6);
 		expected.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>(); //designEvent does this
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
-		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
-		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloral.getLowFloralArrangement(), 0);
 		determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 0);
 		
 		HashMap<Object, Integer> actual = event.placeArrangements(event.getTableCount(), 
@@ -204,17 +204,17 @@ class ClientEventTest {
 	public void testPlaceRemainingArrangements0() { //no tall arrangements, tests sum of arrangements in the HashMap are the same as the number of tables
 		HashMap<Object, Integer> expectedArrangements = new HashMap<Object, Integer>();
 		expectedArrangements.put(VotiveArrangement.getVotiveArrangement(), 12);
-		expectedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 12);
-		expectedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 11);
+		expectedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 12);
+		expectedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 11);
 		
 		int expected = 35;
 		
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
-		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
-		determinedArrangements.put(LowFloralArrangement.getLowFloralArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(LowFloral.getLowFloralArrangement(), 0);
 		
 		event.placeArrangements(event.getTableCount(), 4, determinedArrangements);
 		
@@ -228,16 +228,16 @@ class ClientEventTest {
 	public void testPlaceRemainingArrangement1() { //4 arrangements included tall ones, tests sum of arrangements in the HashMap are the same as the number of tables & the number of Tall Arrangements doesn't change
 		HashMap<Object, Integer> expectedArrangements = new HashMap<Object, Integer>();
 		expectedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
-		expectedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 9);
-		expectedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+		expectedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 9);
+		expectedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 8);
 		expectedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
 		
 		int expected = 35;
 		
 		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 		determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 0);
-		determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 0);
-		determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 0);
+		determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 0);
+		determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 0);
 		determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 0);
 		
 		event.placeArrangements(event.getTableCount(), 4, determinedArrangements);
@@ -252,13 +252,13 @@ class ClientEventTest {
 @Test
 public void testDesignEvent() {
 	
-	HashMap<Object, Integer> actual = event.designEvent(florist, VotiveArrangement.getVotiveArrangement(), SmallFloralRingArrangement.getSmallFloralRingArrangement(), 
-						LargeFloralRingArrangement.getLargeFloralRingArrangement(), 
+	HashMap<Object, Integer> actual = event.designEvent(florist, VotiveArrangement.getVotiveArrangement(), SmallFloralRing.getSmallFloralRingArrangement(), 
+						LargeFloralRing.getLargeFloralRingArrangement(), 
 						TallAnchorArrangement.getTallAnchorArrangement());
 	
 	assertTrue(actual.containsKey(VotiveArrangement.getVotiveArrangement()));
-	assertTrue(actual.containsKey(SmallFloralRingArrangement.getSmallFloralRingArrangement()));
-	assertTrue(actual.containsKey(LargeFloralRingArrangement.getLargeFloralRingArrangement()));
+	assertTrue(actual.containsKey(SmallFloralRing.getSmallFloralRingArrangement()));
+	assertTrue(actual.containsKey(LargeFloralRing.getLargeFloralRingArrangement()));
 	assertTrue(actual.containsKey(TallAnchorArrangement.getTallAnchorArrangement()));
 
 }
@@ -269,8 +269,8 @@ public void testCalculateEstimatedCostArrangements() {
 	
 	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
-	determinedArrangements.put(SmallFloralRingArrangement.getSmallFloralRingArrangement(), 9);
-	determinedArrangements.put(LargeFloralRingArrangement.getLargeFloralRingArrangement(), 8);
+	determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 9);
+	determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 8);
 	determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
 	
 	event.calculateEstimatedCostArrangements(determinedArrangements);

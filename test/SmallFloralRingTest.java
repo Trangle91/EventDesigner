@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 class SmallFloralRingTest {
-	SmallFloralRingArrangement smallFloralRingArrangement = SmallFloralRingArrangement.Instance;
+	SmallFloralRing smallFloralRingArrangement = SmallFloralRing.Instance;
 	
 //	@Test
 //	void testGetInstanceVotiveArrangement() {

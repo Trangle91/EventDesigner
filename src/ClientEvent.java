@@ -200,16 +200,16 @@ public class ClientEvent {
 			return individualCost.add(VotiveArrangement.getVotiveArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
 		}
 		
-		if (arrangement.getKey().equals(SmallFloralRingArrangement.getSmallFloralRingArrangement())) {
-			return individualCost.add(SmallFloralRingArrangement.getSmallFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		if (arrangement.getKey().equals(SmallFloralRing.getSmallFloralRingArrangement())) {
+			return individualCost.add(SmallFloralRing.getSmallFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
 		}
 		
-		if (arrangement.getKey().equals(LargeFloralRingArrangement.getLargeFloralRingArrangement())) {
-			return individualCost.add(LargeFloralRingArrangement.getLargeFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		if (arrangement.getKey().equals(LargeFloralRing.getLargeFloralRingArrangement())) {
+			return individualCost.add(LargeFloralRing.getLargeFloralRingArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
 		}
 		
-		if (arrangement.getKey().equals(LowFloralArrangement.getLowFloralArrangement())) {
-			return individualCost.add(LowFloralArrangement.getLowFloralArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
+		if (arrangement.getKey().equals(LowFloral.getLowFloralArrangement())) {
+			return individualCost.add(LowFloral.getLowFloralArrangement().getArrangementPrice().multiply(new BigDecimal (arrangement.getValue().intValue())));
 		}
 		
 		return individualCost;
