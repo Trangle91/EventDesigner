@@ -12,19 +12,19 @@ import java.util.Optional;
 
 public class Client {
 
-	public String firstName;
-	public String lastName;
-	public Optional<String> partnerName = Optional.empty(); //replace with builder if more optional fields added
-	public String phoneNumber;
-	public ClientEvent event;
+	private String firstName;
+	private String lastName;
+	private Optional<String> partnerName = Optional.empty(); //replace with builder if more optional fields added
+	private String phoneNumber;
+	private ClientEvent event;
 	private ClientEventMapKey clientEventMapKey;
 
-	public ClientEventBuilder builder;
-	
+	private ClientEventBuilder builder;
+
 	private static  HashMap<String, Client> clientMap = new HashMap<String, Client>();
 	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
-	
-	
+
+
 
 	public Client(String firstName, String lastName, Optional<String> partnerName, String phoneNumber, ClientEventBuilder builder) {
 		this.firstName = firstName;
@@ -40,13 +40,13 @@ public class Client {
 		return this.firstName + " " + this.lastName;
 
 	}
-	
 
-	public void setFirstName(String firstName) {
+
+	private void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public void setLastName(String lastName) {
+	private void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -54,7 +54,7 @@ public class Client {
 		return this.phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
+	private void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -62,14 +62,14 @@ public class Client {
 		return this.partnerName.orElse(" ");
 	}
 
-	public void setPartnerName(Optional<String> partnerName) {
+	private void setPartnerName(Optional<String> partnerName) {
 		this.partnerName = partnerName;
 	}
 
 	public ClientEvent getClientEvent() {
 		return this.builder.getClientEvent();
 	} 
-	
+
 	public Client getClientAccount(String phoneNumber) {
 		return clientMap.get(phoneNumber);
 	}
@@ -84,35 +84,35 @@ public class Client {
 				.withEventTheme(eventTheme)
 				.withColorPalette(colorPalette)
 				.buildClientEvent();
-		
+
 		ClientEventMapKey clientEventMapKey = new ClientEventMapKey(this, eventDate);
-		
+
 		clientEventMap.put(clientEventMapKey, event);
-		
+
 		return event;
 	}
-	
+
 
 	public ClientEvent getClientEventFromMap(LocalDate eventDate) { //used after saving an event to the map, can return null if not in map
 		ClientEventMapKey  key = new ClientEventMapKey(this, eventDate);
 		return clientEventMap.get(key);
 	}
-	
+
 	@Override
-	
+
 	public int hashCode() {
 		return Objects.hash(firstName, lastName, phoneNumber);
-		
+
 	}
-	
+
 	@Override
-	
+
 	public boolean equals(Object o) {
 		if (o == this) return true;
 		if (!(o instanceof Client)) {
 			return false;
 		}
-		
+
 		Client client = (Client) o;
 		return firstName == client.firstName &&
 				Objects.equals(lastName, client.lastName) &&

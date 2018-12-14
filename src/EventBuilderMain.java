@@ -152,10 +152,11 @@ public class EventBuilderMain {
 		case 4: arrange = LowFloral.Instance;
 		break;
 		case 5: arrange = SmallFloralRing.Instance;
-		currentclient.event.designEvent(florist, arrange);
+		currentclient.getClientEvent().designEvent(florist, arrange);
 	}		
 				
 				
+		
 		
 	
 	}
