@@ -124,26 +124,6 @@ public class Florist { //still needs a method that returns florist(s) after inpu
 		return floristMap;
 	}
 	
-//	public void  floristOptions(ClientEvent event){
-//		
-//		floristMap.forEach((key, value) -> {
-//			
-//		BigDecimal estimatedEventCost = (value.getTotalFee().add(event.getEstimatedEventCost()));
-//		if (estimatedEventCost.compareTo(event.getBudgetAmount()) <= 0) {
-//		potentialFloristMap.put(value, estimatedEventCost);
-//		
-//		}
-//		});
-//		
-//		
-//		}
-//	
-//	//changed to protected for testing
-//	protected boolean compareCostToBudget(BigDecimal estimatedCost, BigDecimal budget) {
-//		int i = estimatedCost.compareTo(budget);
-//		return i == -1;
-//	}
-	
 
 	@Override
 	public boolean equals(Object o) {

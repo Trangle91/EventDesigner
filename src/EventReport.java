@@ -80,7 +80,8 @@ public void printFloristReport(ClientEvent event) {
 		floristReport += "\nContact number: "+ key.getFloristContactNumber();
 		floristReport += "\nMinimum budget required: "+ key.getMinimumBudget();
 		floristReport += "\nEstimated fee: " + NumberFormat.getCurrencyInstance().format(key.getTotalFee()) + "\n";
-		floristReport +="\nTotal Estimated Event Cost: " + NumberFormat.getCurrencyInstance().format(event.getEstimatedEventCost().add(key.getTotalFee()));
+		floristReport +="\nTotal Estimated Event Cost: " + NumberFormat.getCurrencyInstance().format(event.getEstimatedEventCost()
+				.add(key.getTotalFee()));
 		System.out.println(floristReport);
 	}
 	);
