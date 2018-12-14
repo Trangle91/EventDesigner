@@ -7,12 +7,10 @@ import org.junit.jupiter.api.Test;
 class SmallFloralRingTest {
 	SmallFloralRing smallFloralRingArrangement = SmallFloralRing.Instance;
 	
-//	@Test
-//	void testGetInstanceVotiveArrangement() {
-//		VotiveArrangement actual = VotiveArrangement.Instance;
-//		VotiveArrangement expected = VotiveArrangement.getVotiveArrangement();
-//		assertEquals(expected, actual);
-//	}
+@Test
+public void testGetInstance() {
+	assertNotNull(SmallFloralRing.getSmallFloralRingArrangement());
+}
 	
 	@Test
 	void testGetArrangementPrice() {
@@ -42,5 +40,10 @@ class SmallFloralRingTest {
 		int expected = smallFloralRingArrangement.getNumOfVotivesIncluded();
 		assertEquals(expected, actual);
 	}
+	@Test
+	void testArrangementReport() {
+		assertNotNull(smallFloralRingArrangement.ArrangementReport());
+	}
+
 
 }

@@ -21,7 +21,7 @@ Instance;
 	
 	public String  getArrangementDescription() {
 		return arrangementDescription;
-	}
+	} 
 	
 	public BigDecimal getArrangementPrice() {
 		return arrangementPrice;

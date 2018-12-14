@@ -40,6 +40,7 @@ public class Client {
 		return this.firstName + " " + this.lastName;
 
 	}
+	
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -67,7 +68,7 @@ public class Client {
 
 	public ClientEvent getClientEvent() {
 		return this.builder.getClientEvent();
-	}
+	} 
 	
 	public Client getClientAccount(String phoneNumber) {
 		return clientMap.get(phoneNumber);

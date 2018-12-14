@@ -7,13 +7,10 @@ import org.junit.jupiter.api.Test;
 class VotiveArrangementTest {
 	VotiveArrangement votiveArrangement = VotiveArrangement.Instance;
 	
-//	@Test
-//	void testGetInstanceVotiveArrangement() {
-//		VotiveArrangement actual = VotiveArrangement.Instance;
-//		VotiveArrangement expected = VotiveArrangement.getVotiveArrangement();
-//		assertEquals(expected, actual);
-//	}
-	
+@Test
+public void testGetInstance() {
+	assertNotNull(VotiveArrangement.getVotiveArrangement());
+}
 	@Test
 	void testGetArrangementPrice() {
 		BigDecimal actual = votiveArrangement.arrangementPrice;
@@ -42,5 +39,11 @@ class VotiveArrangementTest {
 		int expected = votiveArrangement.getNumOfVotivesIncluded();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void testArrangementReport() {
+		assertNotNull(votiveArrangement.ArrangementReport());
+	}
+
 	
 }

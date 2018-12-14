@@ -9,12 +9,10 @@ class ArrangementTest {
 	TallAnchorArrangement tallAnchorArrangement = TallAnchorArrangement.Instance;
 	
 	
-//	@Test
-//	void testGetInstanceTallAnchorArrangement() {
-//		TallAnchorArrangement actual = TallAnchorArrangement.Instance;
-//		TallAnchorArrangement expected = TallAnchorArrangement.getTallAnchorArrangement();
-//		assertEquals(expected, actual);
-//	}
+@Test
+public void testGetInstance() {
+	assertNotNull(TallAnchorArrangement.getTallAnchorArrangement());
+}
 	
 	@Test
 	void testGetTallAnchorArrangementPrice() {
@@ -74,5 +72,11 @@ class ArrangementTest {
 		int actual = tallAnchorArrangement.determineNumTallArrangements(tableCount, 2);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void testArrangementReport() {
+		assertNotNull(tallAnchorArrangement.ArrangementReport());
+	}
+
 	
 }

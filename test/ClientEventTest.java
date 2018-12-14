@@ -249,6 +249,8 @@ class ClientEventTest {
 		assertEquals(expectedArrangements.get(TallAnchorArrangement.getTallAnchorArrangement()), actualArrangements.get(TallAnchorArrangement.getTallAnchorArrangement()));
 	}
 	
+
+	
 @Test
 public void testDesignEvent() {
 	
@@ -265,19 +267,20 @@ public void testDesignEvent() {
 
 @Test
 public void testCalculateEstimatedCostArrangements() {
-	BigDecimal expected = new BigDecimal("2580.00");
+	BigDecimal expected = new BigDecimal("3060.00");
 	
 	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
 	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
 	determinedArrangements.put(SmallFloralRing.getSmallFloralRingArrangement(), 9);
 	determinedArrangements.put(LargeFloralRing.getLargeFloralRingArrangement(), 8);
 	determinedArrangements.put(TallAnchorArrangement.getTallAnchorArrangement(), 9);
+	determinedArrangements.put(LowFloral.getLowFloralArrangement(), 8);
 	
 	event.calculateEstimatedCostArrangements(determinedArrangements);
 	
-	BigDecimal actual =event.getEstimatedEventCost();
+	
 		
-	assertEquals(expected, actual);
+	assertEquals(expected, event.getEstimatedEventCost());
 }
 
 @Test

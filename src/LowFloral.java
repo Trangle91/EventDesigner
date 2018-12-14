@@ -29,6 +29,7 @@ Instance;
 	public int getNumOfVotivesIncluded() {
 		return numOfVotivesIncluded;
 	}
+	
 	public String ArrangementReport(){
 		String report;
 		report = "Arrangement #:" + arrangementNum;
