@@ -1,26 +1,26 @@
-import java.lang.reflect.Array;
+
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+
+
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.Set;
-//T.L
+
+
 public class ClientEvent {
 
-	//potential refactor using a multimap
+	
 
-	private LocalDate eventDate; //required
-	private BigDecimal budgetAmount; //required
+	private LocalDate eventDate; 
+	private BigDecimal budgetAmount; 
 	private int tableCount = 0;
 
 	private Optional<Integer> guestCount = Optional.empty(); 
@@ -148,7 +148,6 @@ public class ClientEvent {
 
 	
 	public HashMap<Object, Integer> placeRemainingArrangements(int tableCount, HashMap<Object, Integer> determinedArrangements) { //visibility for testing, because HashMap accesses out of order it unsure which arrangement will get incrementing consider LinkedHashMap
-		int tablesWithArrangements = determinedArrangements.values().stream().mapToInt(Integer::intValue).sum();
 		int numTablesThatNeedArrangements = tableCount - determinedArrangements.values().stream().mapToInt(Integer::intValue).sum();
 		int index = 0;
 		

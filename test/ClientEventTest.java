@@ -294,13 +294,5 @@ public void testFindFlorists() {
 public void testFindFlorists1() {
 	event.findFlorists(florist);	
 }
-
-//@Test
-//public void testCalculateCostIndividualArrangement() {
-//	
-//	HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
-//	determinedArrangements.put(VotiveArrangement.getVotiveArrangement(), 9);
-//	
-//}
 	
 }

@@ -1,10 +1,7 @@
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.math.BigDecimal;
 import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 
 import java.util.Objects;
@@ -13,11 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class Florist { //still needs a method that returns florist(s) after input of budget from arrangement
+public class Florist { 
 
-
-	private Client client;
-	private ClientEvent event;
 	private String companyName;
 	private String phoneNumber;
 	private BigDecimal deliveryFee;

@@ -1,11 +1,7 @@
 import java.math.BigDecimal;
-//<<<<<<< HEAD
-import java.util.HashMap;
-//=======
-import java.text.NumberFormat;
-//>>>>>>> branch 'master' of https://github.com/russndi/EventDesigner.git
 
-//visibility changed for testing
+import java.text.NumberFormat;
+
 
 public enum TallAnchorArrangement  {
 	Instance;

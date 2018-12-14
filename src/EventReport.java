@@ -1,7 +1,4 @@
 import java.text.NumberFormat;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
 
 public interface EventReport {
 	
