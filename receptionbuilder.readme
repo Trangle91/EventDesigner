@@ -17,6 +17,22 @@ standard
 Features
 ReceptionBuilder displays the images of the potential designs, saves the client's event, saves the client information, displays florists that are within a client's budget, and calculates the total estimated cost of the event.
 
+Design
+ReceptionBuilder uses the follow design patterns.
+
+Factory Builder (Item 2) from Effective Java by Joshua Bloch to create an event that has multiple optional fields. 
+MVC to better facilitate the addition of a GUI at a later date (January 2019).
+Low coupling to our best abilities. We really tried to make our classes as loosely dependent on each other as possible. 
+There are some instances where this worked well and some where they did not. An area I'd to work would be the area with ClientEvent and 
+the method floristOptions. 
+I'm not a big fan of having to create a dummy florist controller in the main method in order to be able to use that method. 
+An area where I think it works well is Client and ClientEvent. The two classes aren't coupled at all. They are only connected by a HashMap with a unique key.
+Enum Singletons from Effectie Java by Joshua Bloch. Our arrangements are consistent across all of the florists, clients and events. 
+An Alternative way to do this might have been to create an Arrangement class with subtypes of each arrangement and create a constant 
+reference. 
+
+
+
 How to Run
 ReceptionBuilder currently runs from the console with windows popping up to display the types of arrangements. 
 Client Template
