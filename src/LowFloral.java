@@ -42,4 +42,9 @@ Instance;
 				
 	
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(arrangementName);
+	}
 }

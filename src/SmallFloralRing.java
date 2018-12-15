@@ -41,4 +41,9 @@ Instance;
 		return report += "\n# of Votives Included: " + numOfVotivesIncluded;
 	
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(arrangementName);
+	}
 }

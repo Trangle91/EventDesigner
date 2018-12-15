@@ -81,5 +81,10 @@ public enum TallAnchorArrangement  {
 		}
 
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(arrangementName);
+	}
 }
 
