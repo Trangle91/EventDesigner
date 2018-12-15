@@ -262,6 +262,7 @@ public void testDesignEvent() {
 	assertTrue(actual.containsKey(SmallFloralRing.getSmallFloralRingArrangement()));
 	assertTrue(actual.containsKey(LargeFloralRing.getLargeFloralRingArrangement()));
 	assertTrue(actual.containsKey(TallAnchorArrangement.getTallAnchorArrangement()));
+	assertNotNull(event.getArrangementsForEvent());
 
 }
 
