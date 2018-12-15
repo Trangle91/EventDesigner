@@ -42,11 +42,11 @@ public class Client {
 	}
 
 
-	private void setFirstName(String firstName) {
+	void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	private void setLastName(String lastName) {
+	void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -62,7 +62,7 @@ public class Client {
 		return this.partnerName.orElse(" ");
 	}
 
-	private void setPartnerName(Optional<String> partnerName) {
+	void setPartnerName(Optional<String> partnerName) {
 		this.partnerName = partnerName;
 	}
 

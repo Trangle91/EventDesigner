@@ -31,6 +31,7 @@ public class ClientEvent {
 
 	private BigDecimal estimatedEventCost;
 	private HashMap<Florist, BigDecimal> floristsWithInBudgetMap = new HashMap<Florist, BigDecimal>();
+	private HashMap<Object, Integer> arrangementsForEvent = new HashMap<Object, Integer>();
 	
 
 	public ClientEvent() {
@@ -101,26 +102,29 @@ public class ClientEvent {
 		return floristsWithInBudgetMap;
 	}
 	
+	public HashMap<Object, Integer> getArrangementsForEvent() {
+		return arrangementsForEvent;
+	}
+	
 
 
 
 	public HashMap<Object, Integer> designEvent(Florist florist, Object...arrangements) { //
 		int totalNumArrangements = arrangements.length;
 		
-		HashMap<Object, Integer> determinedArrangements = new HashMap<Object, Integer>();
-		Arrays.stream(arrangements).forEach(arrangement -> determinedArrangements.put(arrangement, 0));
+		Arrays.stream(arrangements).forEach(arrangement -> arrangementsForEvent.put(arrangement, 0));
 		
 		if (arrangements.length == 0) {
 			//eventually throw a message asking client to select an arrangement type. 
 		}
 
-		placeArrangements(this.getTableCount(), totalNumArrangements, determinedArrangements);				
-		placeRemainingArrangements(this.getTableCount(), determinedArrangements);
-		calculateEstimatedCostArrangements(determinedArrangements);
+		placeArrangements(this.getTableCount(), totalNumArrangements, arrangementsForEvent);				
+		placeRemainingArrangements(this.getTableCount(), arrangementsForEvent);
+		calculateEstimatedCostArrangements(arrangementsForEvent);
 		findFlorists(florist);
 		
 		
-		return determinedArrangements;
+		return arrangementsForEvent;
 		
 	}
 

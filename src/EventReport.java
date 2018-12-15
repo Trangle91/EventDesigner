@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 public interface EventReport {
@@ -6,6 +7,7 @@ public interface EventReport {
 	void printEventResults(Client client, Florist florsit);
 	void printEventReport(Client Client, ClientEvent event);
 	void printFloristReport(ClientEvent event);
+	void printNumberOfArrangements(ClientEvent event);
 }
 class Reports implements EventReport{
 
@@ -51,7 +53,16 @@ class Reports implements EventReport{
 
 	}
 
-	
+	@Override
+	public void printNumberOfArrangements(ClientEvent event) {
+		
+		event.getArrangementsForEvent().forEach((key, value) -> {
+			String arrangementReport="\n*********************************";
+			arrangementReport += "\nThe suggested number of each of your selected arrangements is as follows: ";
+			arrangementReport += "\n" + key.toString() + " " + value.intValue();
+			System.out.println(arrangementReport);
+		});
+	}
 
 
 	@Override

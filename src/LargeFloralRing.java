@@ -40,6 +40,10 @@ Instance;
 		report += "\nPrice: " + fmt.format(arrangementPrice);
 		return report += "\n# of Votives Included: " + numOfVotivesIncluded + "\n*****************************";
 				
+	}
 	
+	@Override
+	public String toString() {
+		return String.format(arrangementName);
 	}
 }
