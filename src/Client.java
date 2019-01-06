@@ -1,5 +1,10 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,6 +12,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Properties;
 
 //client directs the building of the event
 
@@ -14,16 +20,33 @@ public class Client {
 
 	private String firstName;
 	private String lastName;
+	private String username;
+	private String password;
 	private Optional<String> partnerName = Optional.empty(); //replace with builder if more optional fields added
 	private String phoneNumber;
 	private ClientEvent event;
+	private LocalDateTime lastLogOnDateTime = null;
+	private LocalDateTime lastLogOffDateTime = null;
 	private ClientEventMapKey clientEventMapKey;
 
 	private ClientEventBuilder builder;
 
 	private static  HashMap<String, Client> clientMap = new HashMap<String, Client>();
 	private HashMap<ClientEventMapKey, ClientEvent> clientEventMap = new HashMap<ClientEventMapKey, ClientEvent>();
+	
 
+	static Properties defaultProperties = new Properties();
+
+	static {
+
+		try {
+			InputStream input = new FileInputStream(Client.class.getName().toLowerCase() + "-default.properties");
+			defaultProperties.load(input);
+		} catch (IOException e) {
+			defaultProperties.setProperty("client.count", "0");
+		}
+
+	}
 
 
 	public Client(String firstName, String lastName, Optional<String> partnerName, String phoneNumber, ClientEventBuilder builder) {
@@ -34,6 +57,40 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 		this.builder = builder;
 		clientMap.put(phoneNumber, this);
+	}
+	
+	
+	public static void initializer() throws IOException {
+
+		Properties properties = new Properties(defaultProperties);
+
+		try {
+			InputStream input = new FileInputStream(Client.class.getName().toLowerCase() + ".properties");
+			properties.load(input);
+		}
+		catch (FileNotFoundException e) {
+		}
+		catch (IOException e) {
+			throw e;
+		}
+
+		int count = Integer.parseInt(properties.getProperty("client.count", "1").trim());
+		for (int index = 0; index < count; index++) {
+			String prefix = "client." + index + ".";
+			String username = properties.getProperty(prefix + "username").trim();
+			String password = properties.getProperty(prefix + "password").trim();
+			String lastLogOnTime = properties.getProperty(prefix + "lastLogOnTime".trim());
+			String lastLogOffTime = properties.getProperty(prefix + "lastLogOffTime".trim());
+			if (username != null && password != null) {
+				addClient(username, password);
+				//new client form should show up or print a message to make a new client
+			}
+		}
+	}
+
+	private static void addClient(String username, String password) {
+		
+		
 	}
 
 	public String getClientName() {
@@ -73,6 +130,16 @@ public class Client {
 	public Client getClientAccount(String phoneNumber) {
 		return clientMap.get(phoneNumber);
 	}
+	
+	public LocalDateTime getLastLogOffDateTime() {
+		return lastLogOffDateTime;
+	}
+
+
+	public void setLastLogOffDateTime(LocalDateTime lastLogOffDateTime) {
+		this.lastLogOffDateTime = lastLogOffDateTime;
+	}
+
 
 	public ClientEvent createEvent(LocalDate eventDate, BigDecimal budgetAmount, Optional<Integer> guestCount, 
 			int tableCount, Optional<String> eventTheme, Optional<String> colorPalette) {
@@ -97,6 +164,21 @@ public class Client {
 		ClientEventMapKey  key = new ClientEventMapKey(this, eventDate);
 		return clientEventMap.get(key);
 	}
+	
+	public static Client login(String username, String password) {
+		Client client = clientMap.get(username);
+		if(client == null || !client.password.equals(password))
+			return null;
+		client.lastLogOnDateTime = LocalDateTime.now();
+		return client;
+	}
+	
+	public void logout() {
+		setLastLogOffDateTime(LocalDateTime.now());
+		
+	}
+	
+	
 
 	@Override
 
